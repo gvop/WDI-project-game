@@ -1,3 +1,5 @@
+@import url(https://fonts.googleapis.com/css?family=Montserrat:400,700);
+
 /** GENERAL **/
 body {
   background: #E0F7FA;
@@ -5,7 +7,9 @@ body {
 }
 
 /** TYPOGRAFIE **/
+
 h1,h2 {
+  font-family: 'Montserrat', sans-serif;
   margin: 1rem 0;
 }
 
@@ -15,6 +19,16 @@ h1 {
 
 h2 {
   font-size: 2rem;
+}
+
+h3,
+.character,
+#ask {
+  font-size: 1.5rem;
+}
+
+.character{
+  font-family: 'Montserrat', sans-serif;
 }
 
 /** BOARD **/
@@ -30,10 +44,19 @@ h2 {
   display: block;
 }
 
+form {
+  font-family: 'Montserrat', sans-serif;
+}
+
+#ask {
+  margin: 2rem;
+  padding: 5px 10px;
+}
+
 .character{
   cursor: pointer;
   background:#0097A7;
-  background: url("../pictures/alex.png");
+/*  background: url("../pictures/alex.png");*/ 
   background-size: cover;
   color: white;
   width: 11.5%;
