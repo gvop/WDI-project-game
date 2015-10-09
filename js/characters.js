@@ -155,7 +155,7 @@ list.characters = [{
 },
 {
   'id'          :   [14],
-  'name'        :   ["anne"],
+  'name'        :   ["maria"],
   'gender'      :   ["woman"],
   'picture'     :   ["images/bill.png"],
   'head'        :   ["round"],
@@ -187,14 +187,14 @@ list.characters = [{
   'cheeks'      :   ["thick","red"]  
 },
 { 'id'          :   [17],
-'name'        :   ["peter"],
-'gender'      :   ["man"],
-'picture'     :   ["images/peter.png"],
-'head'        :   ["round"],
-'nose'        :   ["small"],
-'hair'        :   ["orange","bold"],
-'expresion'   :   ["smile","grin"],
-'cheeks'      :   ["thick","red"]  
+  'name'        :   ["peter"],
+  'gender'      :   ["man"],
+  'picture'     :   ["images/peter.png"],
+  'head'        :   ["round"],
+  'nose'        :   ["small"],
+  'hair'        :   ["orange","bold"],
+  'expresion'   :   ["smile","grin"],
+  'cheeks'      :   ["thick","red"]  
 },
 {
   'id'          :   [18],
@@ -230,14 +230,14 @@ list.characters = [{
   'cheeks'      :   ["thick","red"]  
 },
 { 'id'          :   [21],
-'name'        :   ["sam"],
-'gender'      :   ["man"],
-'picture'     :   ["images/sam.png"],
-'head'        :   ["pear shaped"],
-'nose'        :   ["small"],
-'hair'        :   ["orange","bold"],
-'expresion'   :   ["grin"],
-'cheeks'      :   ["thick","red"]  
+  'name'        :   ["sam"],
+  'gender'      :   ["man"],
+  'picture'     :   ["images/sam.png"],
+  'head'        :   ["pear shaped"],
+  'nose'        :   ["small"],
+  'hair'        :   ["orange","bold"],
+  'expresion'   :   ["grin"],
+  'cheeks'      :   ["thick","red"]  
 },
 {
   'id'          :   [22],
