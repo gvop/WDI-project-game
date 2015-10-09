@@ -1,7 +1,6 @@
+list = {};                  //Object with characters in there
 
-guessWho = {};
-
-guessWho.charachter = [{
+list.characters = [{
   'id'          :   [00],
   'name'        :   ["alex"],
   'gender'      :   ["man"],
@@ -188,14 +187,14 @@ guessWho.charachter = [{
   'cheeks'      :   ["thick","red"]  
 },
 { 'id'          :   [17],
-  'name'        :   ["peter"],
-  'gender'      :   ["man"],
-  'picture'     :   ["images/peter.png"],
-  'head'        :   ["round"],
-  'nose'        :   ["small"],
-  'hair'        :   ["orange","bold"],
-  'expresion'   :   ["smile","grin"],
-  'cheeks'      :   ["thick","red"]  
+'name'        :   ["peter"],
+'gender'      :   ["man"],
+'picture'     :   ["images/peter.png"],
+'head'        :   ["round"],
+'nose'        :   ["small"],
+'hair'        :   ["orange","bold"],
+'expresion'   :   ["smile","grin"],
+'cheeks'      :   ["thick","red"]  
 },
 {
   'id'          :   [18],
@@ -231,14 +230,14 @@ guessWho.charachter = [{
   'cheeks'      :   ["thick","red"]  
 },
 { 'id'          :   [21],
-  'name'        :   ["sam"],
-  'gender'      :   ["man"],
-  'picture'     :   ["images/sam.png"],
-  'head'        :   ["pear shaped"],
-  'nose'        :   ["small"],
-  'hair'        :   ["orange","bold"],
-  'expresion'   :   ["grin"],
-  'cheeks'      :   ["thick","red"]  
+'name'        :   ["sam"],
+'gender'      :   ["man"],
+'picture'     :   ["images/sam.png"],
+'head'        :   ["pear shaped"],
+'nose'        :   ["small"],
+'hair'        :   ["orange","bold"],
+'expresion'   :   ["grin"],
+'cheeks'      :   ["thick","red"]  
 },
 {
   'id'          :   [22],
@@ -262,4 +261,5 @@ guessWho.charachter = [{
   'expresion'   :   ["smile","grin"],
   'cheeks'      :   ["thick","red"]  
 }];
+
 

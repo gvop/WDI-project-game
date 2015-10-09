@@ -1,3 +1,44 @@
+/** GENERAL **/
 body {
-  background: white;
+  background: #E0F7FA;
+  text-align: center;
+}
+
+/** TYPOGRAFIE **/
+h1,h2 {
+  margin: 1rem 0;
+}
+
+h1 {
+  font-size: 3rem;
+}
+
+h2 {
+  font-size: 2rem;
+}
+
+/** BOARD **/
+
+#board {
+  margin: auto;
+  max-width: 960px;
+  display: block;
+}
+
+#question-box {
+  margin: 2rem;
+  display: block;
+}
+
+.character{
+  cursor: pointer;
+  background:#0097A7;
+  background: url("../pictures/alex.png");
+  background-size: cover;
+  color: white;
+  width: 11.5%;
+  padding: 9% 0;
+  margin: .5%;
+  display: inline-block;
+  text-align: center;
 }
