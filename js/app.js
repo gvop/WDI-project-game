@@ -49,8 +49,6 @@ window.onload = function(){
   //Get the board show
   guessWho.printBoard = function(){
 
-    console.log(this)
-
     var selected = this.characters[Math.floor(Math.random()*24)]
     this.selectedCharacter = selected
 
@@ -78,8 +76,21 @@ window.onload = function(){
 
  //Makes the right characters disapear 
   guessWho.dropDowns = function(value, choice){
-    var number = this.characters["id"]
-    console.log(number)
+    console.log(choice)
+    console.log(value)
+    console.log(this.selectedCharacter[value])
+    var input = choice
+    $.each(this.selectedCharacter[value], function(key, value){
+      if( input === value){
+        $("#answer-overlay h2").html("Yes")
+        $("#answer-overlay").fadeIn(500).delay(1000).fadeOut(500);
+        // $('#info-display').html("Yes!")
+      } else {
+        $("#answer-overlay h2").html("No!")
+        $("#answer-overlay").fadeIn(500).delay(1000).fadeOut(500);
+      }
+    })
+
     var counter = 0;
     for(var i=0;i<this.characters.length;i++){
       for(var j=0;j<this.characters[i][value].length;j++){
@@ -95,6 +106,7 @@ window.onload = function(){
     };
     guessWho.printBoard();
 };
+
 
 
 // $("#bg").fadeOut(function() {

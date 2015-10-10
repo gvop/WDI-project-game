@@ -14,26 +14,29 @@
     <div class="container">
       <h1>Welcome to Guss Who!</h1>
       <h2 class="info-message sub-font">Choose the character the computer needs to guess!</h2>
-
     </div>
     <button id="start">Start</button>
   </div>
 
+  <div id="answer-overlay">
+    <h2></h2>
+  </div>
+
   <div class="container">
     <h1>Guess Who!</h1>
+    <hr>
     <ul id="board"></ul>
     <div id="info-box">
-      <h3>Your choose was:</h3>
-      <p id="players_choice"></p>
-      <p>And some more here</p>
-      <p>And some more here</p>
-      <p>And some more here</p>
-      <p>And some more here</p>
-      <p>And some more here</p>
-      <p>And some more here</p>
-      <p>And some more here</p>
-      <p>And some more here</p>
+      <select>
+        <h3 class="main-font">Your choose was:</h3>
+        <h3 id="players_choice"></h3>
+      </select>
+      <select>
+        <h3 class="main-font">Guesses left:</h3>
+        <h3 id="info-display"></h3>
+      </select>
     </div>
+    <hr>
   </div>
 
   <div id="question-box">

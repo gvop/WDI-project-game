@@ -7,6 +7,10 @@ body {
   text-align: center;
 }
 
+hr {
+  margin: 2rem 0;
+}
+
 /** TYPOGRAFIE **/
 
 .main-font {
@@ -60,6 +64,24 @@ button {
   right: 0;
 }
 
+#answer-overlay{
+  display: none;
+  position: absolute;
+/*  background: rgba(255,206,33,.4);*/
+  box-shadow: 0 10px 6px -6px #777;
+  background: red;
+  color: white;
+  top:30%;
+  bottom:30%;
+  left: 0;
+  right: 0;
+}
+
+#answer-overlay h2{
+  color: black;
+  font-size: 10rem;
+}
+
 .container{
   max-width: 960px; 
   margin:0 auto;  
@@ -76,6 +98,11 @@ button {
   background:#FFEBA6;
   display: inline-block;
   vertical-align: top;
+}
+
+#info-box,
+selecter {
+  margin: 2rem;
 }
 
 #question-box {
