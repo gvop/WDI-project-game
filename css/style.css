@@ -3,7 +3,7 @@
 
 /** GENERAL **/
 body {
-  background: #E0F7FA;
+  background: #ffce21;
   text-align: center;
 }
 
@@ -45,12 +45,37 @@ button {
   font-family: 'Josefin Sans', sans-serif;
 }
 
+
+
 /** BOARD **/
 
+#overlay{
+  position: absolute;
+  background: #ffce21;
+  text-align: center;
+  color: white;
+  top:0;
+  bottom:0;
+  left: 0;
+  right: 0;
+}
+
+.container{
+  max-width: 960px; 
+  margin:0 auto;  
+}
+
+
 #board {
-  margin: auto;
-  max-width: 960px;
-  display: block;
+  width: 80%;
+  display: inline-block;
+}
+
+#info-box{
+  width: 18%;
+  background:#FFEBA6;
+  display: inline-block;
+  vertical-align: top;
 }
 
 #question-box {
@@ -62,12 +87,21 @@ form {
   font-family: 'Montserrat', sans-serif;
 }
 
+
 button {
   margin: 2rem;
   padding: 5px 10px;
 }
 
-.character{
+#start{
+  display: none;
+}
+
+
+/* Characters */
+
+.character,
+.character_list{
   cursor: pointer;
   background:#0097A7;
   background: url("../pictures/alex.png"); 
@@ -79,3 +113,10 @@ button {
   display: inline-block;
   text-align: center;
 }
+
+.character::first-letter,
+.character_list::first-letter,
+#players_choice:first-letter {
+  text-transform: uppercase;
+}
+

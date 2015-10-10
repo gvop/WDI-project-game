@@ -1,15 +1,14 @@
 window.onload = function(){
-  // $("#question-box").hide();  
-  // $("#start").hide();
 
   //Object
   var guessWho = {
     characters            :   list.characters,
-    startMessage          :   $("#game-start"),
+    overlay               :   $("#overlay"),
     board                 :   $("#board"),
     playerChoose          :   "",
     selectedCharacter     :   {},
-    askButton             :   {},
+    startButton           :   $("#start"),
+    askButton             :   $("#ask"),
     askQuestion           :   function(){
                               this.features   =   $("input:radio[name='features']:checked").val();
                               this.adjective  =   $("input:radio[name='adjective']:checked").val();
@@ -18,28 +17,33 @@ window.onload = function(){
         }
   };
 
-  
+  //Function to let player choose computer character
+  guessWho.setup = (function(){
+    for(var i=0;i<guessWho.characters.length;i++){
+       $("#overlay .container").append("<li id='" + guessWho.characters[i].name + "' class='character_list'>" + guessWho.characters[i].name + "</li>")};
+    $("li").on("click", function(){
+      var choice = this.id; 
+      guessWho.playerChoose = this.id;  
+      console.log(guessWho.playerChoose);
+      var array = $("li");
+      $(".character_list").fadeOut("slow");
 
-  // guessWho.setup = function(){
-  //   for(var i=0;i<this.characters.length;i++){
-  //      this.board.append("<li id='" + this.characters[i].name + "' class='character'>" + this.characters[i].name + "</li>");
-  //   } 
+          setTimeout(function(){
+                $("#" + choice).fadeIn("slow");
+                $("#start-title").html("You have choosen " + choice +"!");
+                $("#start").fadeIn("slow");
+            }, 500);
 
-  //   $("li").on("click", function(){
-  //     var choice = this.id; 
-  //     console.log(choice);
-  //     var array = $("li");
-  //     $("li").fadeOut("slow");
+      })
+  })();
 
-  //     setTimeout(function(){
-  //         setTimeout(function(){
-  //               $("#" + choice).fadeIn("slow");
-  //               $("#start-title").html("You have choosen " + choice +"!");
-  //           }, 500);
 
-  //       },500)
-  //     })
-  // }
+  //Call function on "ask question"
+  guessWho.askButton.on("click", guessWho.askQuestion)
+  guessWho.startButton.on("click", function(){
+      guessWho.overlay.fadeOut("slow").remove();
+      $("#players_choice").html(guessWho.playerChoose)
+  })
 
 
   //Get the board show
@@ -64,20 +68,27 @@ window.onload = function(){
         console.log("Not the right person!");
       };
     });
-
   };
+
 
   //Checker 
   guessWho.featuresCheck = function(value, choice){
     guessWho.dropDowns(value, choice);
   };
 
+ //Makes the right characters disapear 
   guessWho.dropDowns = function(value, choice){
+    var number = this.characters["id"]
+    console.log(number)
+    var counter = 0;
     for(var i=0;i<this.characters.length;i++){
       for(var j=0;j<this.characters[i][value].length;j++){
         if(this.characters[i][value][j] !== this.selectedCharacter[value][j]){
           var id = this.characters[i]["name"]
-          $('#' + id).hide();
+          counter++;
+          console.log(counter);
+          $('#' + id).css("background","#ffce21");          
+          $('#' + id).css("color", "#ffce21");
           }
         };
       }
@@ -86,7 +97,9 @@ window.onload = function(){
 };
 
 
-
+// $("#bg").fadeOut(function() {
+//    $("#bg").css({background : url('images/bg1.jpg') });
+//    $("#bg").fadeIn(300);
 
 
 

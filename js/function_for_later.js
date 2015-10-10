@@ -27,7 +27,7 @@ window.onload = function(){
   }
 
   guessWho.printBoard();
-  
+
 }
   //Checker 
   guessWho.featuresCheck = function(value, choice){
@@ -46,6 +46,23 @@ window.onload = function(){
     };
   guessWho.printBoard();
 };
+
+guessWho.setup = function(){
+  for(var i=0;i<guessWho.characters.length;i++){
+     guessWho.board.append("<li id='" + guessWho.characters[i].name + "' class='character'>" + guessWho.characters[i].name + "</li>");
+  } 
+
+  $("li").on("click", function(){
+    var choice = this.id; 
+    console.log(choice);
+    var array = $("li");
+    $("li").fadeOut("slow");
+        setTimeout(function(){
+              $("#" + choice).fadeIn("slow");
+              $("#start-title").html("You have choosen " + choice +"!");
+          }, 500);
+    })
+}
 
 
 
