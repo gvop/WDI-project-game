@@ -1,4 +1,5 @@
-@import url(https://fonts.googleapis.com/css?family=Montserrat:400,700);
+@import url(https://fonts.googleapis.com/css?family=Dancing+Script:400,700);
+@import url(https://fonts.googleapis.com/css?family=Josefin+Sans:400,600,300);
 
 /** GENERAL **/
 body {
@@ -8,13 +9,26 @@ body {
 
 /** TYPOGRAFIE **/
 
+.main-font {
+ font-family: 'Dancing Script', cursive; 
+}
+
+.sub-font{
+  font-family: 'Josefin Sans', sans-serif;
+}
+
 h1,h2 {
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Dancing Script', cursive;
   margin: 1rem 0;
 }
 
 h1 {
   font-size: 3rem;
+  font-weight: 700;
+}
+
+h1::first-letter{
+  font-size: 130%;
 }
 
 h2 {
@@ -23,12 +37,12 @@ h2 {
 
 h3,
 .character,
-#ask {
+button {
   font-size: 1.5rem;
 }
 
 .character{
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Josefin Sans', sans-serif;
 }
 
 /** BOARD **/
@@ -48,7 +62,7 @@ form {
   font-family: 'Montserrat', sans-serif;
 }
 
-#ask {
+button {
   margin: 2rem;
   padding: 5px 10px;
 }
@@ -56,7 +70,7 @@ form {
 .character{
   cursor: pointer;
   background:#0097A7;
-/*  background: url("../pictures/alex.png");*/ 
+  background: url("../pictures/alex.png"); 
   background-size: cover;
   color: white;
   width: 11.5%;
