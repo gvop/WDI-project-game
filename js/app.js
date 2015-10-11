@@ -20,7 +20,19 @@ window.onload = function(){
   //Function to let player choose computer character
   guessWho.setup = (function(){
     for(var i=0;i<guessWho.characters.length;i++){
-       $("#overlay .container").append("<li id='" + guessWho.characters[i].name + "' class='character_list'>" + guessWho.characters[i].name + "</li>")};
+       $("#overlay .container").append(
+               " <li style='background: url(pictures/" 
+                 + 
+               guessWho.characters[i].name 
+               + 
+               ".png); background-size: cover;background-position: 50% 46%;' id='" 
+               + 
+               guessWho.characters[i].name 
+               + 
+               "'class='character_list'>" 
+               + 
+               "</li>")
+           }
 
     $("li").on("click", function(){
       var choice = this.id; 
@@ -64,7 +76,7 @@ window.onload = function(){
           + 
         this.characters[i].name 
         + 
-        ".png); background-size: cover;background-position: center;' id='" 
+        ".png); background-size: cover;background-position: 50% 46%;' id='" 
         + 
         this.characters[i].name 
         + 

@@ -136,15 +136,17 @@ button {
   background: url("../pictures/alex.png"); 
   background-size: cover;
   color: white;
-  width: 11%;
+  width: 10%;
   padding: 9% 0;
   margin: .5%;
   display: inline-block;
   text-align: center;
+  transition: all .5s;
 }
 
 .character:hover{
-  background-size: 120%;
+  width: 10%;
+  padding: 9% 4.5%;
 
 }
 
