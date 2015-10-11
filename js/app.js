@@ -21,11 +21,13 @@ window.onload = function(){
   guessWho.setup = (function(){
     for(var i=0;i<guessWho.characters.length;i++){
        $("#overlay .container").append("<li id='" + guessWho.characters[i].name + "' class='character_list'>" + guessWho.characters[i].name + "</li>")};
+
     $("li").on("click", function(){
       var choice = this.id; 
       guessWho.playerChoose = this.id;  
       console.log(guessWho.playerChoose);
       var array = $("li");
+
       $(".character_list").fadeOut("slow");
 
           setTimeout(function(){
@@ -41,8 +43,10 @@ window.onload = function(){
   //Call function on "ask question"
   guessWho.askButton.on("click", guessWho.askQuestion)
   guessWho.startButton.on("click", function(){
-      guessWho.overlay.fadeOut("slow").remove();
-      $("#players_choice").html(guessWho.playerChoose)
+      guessWho.overlay.fadeOut(1000).remove();
+      $("body").hide().delay(200).fadeIn(2000);
+      var name = guessWho.playerChoose;
+      $("#players_choice").html("<li id='" + name + "' class='character_list side_pic'>" + name + "</li>")   //Get picture in the corner up
   })
 
 
@@ -55,7 +59,18 @@ window.onload = function(){
     console.log(this.selectedCharacter["name"][0]); //TO SEE DURING TEST WHOM THE PERSON IS
 
     for(var i=0;i<this.characters.length;i++){
-       this.board.append("<li id='" + this.characters[i].name + "' class='character'>" + this.characters[i].name + "</li>");
+       this.board.append(
+        " <li style='background: url(pictures/" 
+          + 
+        this.characters[i].name 
+        + 
+        ".png); background-size: cover;background-position: center;' id='" 
+        + 
+        this.characters[i].name 
+        + 
+        "'class='character'>" 
+        + 
+        "</li>")
     }
 
       $(".character").on("click", function(){
@@ -74,11 +89,9 @@ window.onload = function(){
     guessWho.dropDowns(value, choice);
   };
 
+
  //Makes the right characters disapear 
   guessWho.dropDowns = function(value, choice){
-    console.log(choice)
-    console.log(value)
-    console.log(this.selectedCharacter[value])
     var input = choice
     $.each(this.selectedCharacter[value], function(key, value){
       if( input === value){
@@ -106,14 +119,6 @@ window.onload = function(){
     };
     guessWho.printBoard();
 };
-
-
-
-// $("#bg").fadeOut(function() {
-//    $("#bg").css({background : url('images/bg1.jpg') });
-//    $("#bg").fadeIn(300);
-
-
 
 
 

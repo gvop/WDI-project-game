@@ -54,7 +54,7 @@ button {
 /** BOARD **/
 
 #overlay{
-  position: absolute;
+  position: fixed;
   background: #ffce21;
   text-align: center;
   color: white;
@@ -72,7 +72,7 @@ button {
   background: red;
   color: white;
   top:30%;
-  bottom:30%;
+  bottom:40%;
   left: 0;
   right: 0;
 }
@@ -89,7 +89,7 @@ button {
 
 
 #board {
-  width: 80%;
+  width: 100%;
   display: inline-block;
 }
 
@@ -100,9 +100,8 @@ button {
   vertical-align: top;
 }
 
-#info-box,
-selecter {
-  margin: 2rem;
+#info-box {
+  display: inline-block;
 }
 
 #question-box {
@@ -124,6 +123,9 @@ button {
   display: none;
 }
 
+.margin {
+  margin: 2rem 0px;
+}
 
 /* Characters */
 
@@ -134,16 +136,25 @@ button {
   background: url("../pictures/alex.png"); 
   background-size: cover;
   color: white;
-  width: 11.5%;
+  width: 11%;
   padding: 9% 0;
   margin: .5%;
   display: inline-block;
   text-align: center;
 }
 
+.character:hover{
+  background-size: 120%;
+
+}
+
 .character::first-letter,
 .character_list::first-letter,
 #players_choice:first-letter {
   text-transform: uppercase;
+}
+
+.side_pic{
+  padding:4.5rem 2.3rem;
 }
 

@@ -65,4 +65,20 @@ guessWho.setup = function(){
 }
 
 
+    var counter = 0;
+    for(var i=0;i<this.characters.length;i++){
+      for(var j=0;j<this.characters[i][value].length;j++){
+        if(this.characters[i][value][j] !== this.selectedCharacter[value][j]){
+          var id = this.characters[i]["name"]
+          counter++;
+          console.log(counter);
+          $('#' + id).css("background","#ffce21");          
+          $('#' + id).css("color", "#ffce21");
+          }
+        };
+      }
+    };
+    guessWho.printBoard();
+};
+
 
