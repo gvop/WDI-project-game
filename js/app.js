@@ -3,6 +3,7 @@ window.onload = function(){
   //Object
   var guessWho = {
     characters            :   list.characters,
+    questions             :   list.options,
     overlay               :   $("#overlay"),
     board                 :   $("#board"),
     playerChoose          :   "",
@@ -25,7 +26,7 @@ window.onload = function(){
                  + 
                guessWho.characters[i].name 
                + 
-               ".png); background-size: cover;background-position: 50% 46%;' id='" 
+               ".png); background-size: 120%;background-position: 50% 46%;' id='" 
                + 
                guessWho.characters[i].name 
                + 
@@ -54,6 +55,7 @@ window.onload = function(){
 
   //Call function on "ask question"
   guessWho.askButton.on("click", guessWho.askQuestion)
+
   guessWho.startButton.on("click", function(){
       guessWho.overlay.fadeOut(1000).remove();
       $("body").hide().delay(200).fadeIn(2000);
@@ -64,9 +66,11 @@ window.onload = function(){
 
   //Get the board show
   guessWho.printBoard = function(){
-
-    var selected = this.characters[Math.floor(Math.random()*24)]
+    var randomNumber = Math.floor(Math.random()*24);
+    console.log(randomNumber)                     //RANDOM NUMBER
+    var selected = this.characters[randomNumber]
     this.selectedCharacter = selected
+
 
     console.log(this.selectedCharacter["name"][0]); //TO SEE DURING TEST WHOM THE PERSON IS
 
@@ -76,7 +80,7 @@ window.onload = function(){
           + 
         this.characters[i].name 
         + 
-        ".png); background-size: cover;background-position: 50% 46%;' id='" 
+        ".png); background-size: 120%;background-position: 50% 46%;' id='" 
         + 
         this.characters[i].name 
         + 
@@ -95,6 +99,24 @@ window.onload = function(){
     });
   };
 
+  $("input:radio").on("click", function(){
+    var object = guessWho.questions[0][this.value]  
+    // console.log(object)
+    $(".hide").remove();
+    for(var i=0;i<object.length;i++){
+
+          var constructor = '<input type="radio" class="hide" id="'+ object[i] +'" name="adjective" value="'+ 
+          object[i] +'" > <label class="hide" for="'+ object[i] + '">'+ object[i] +'</label>'
+
+          $("#adjective").append(constructor)     
+    }    
+   });
+
+  //Question selecter builder
+  guessWho.questionBuilder = function(features){
+
+  }
+
 
   //Checker 
   guessWho.featuresCheck = function(value, choice){
@@ -104,29 +126,42 @@ window.onload = function(){
 
  //Makes the right characters disapear 
   guessWho.dropDowns = function(value, choice){
-    var input = choice
-    $.each(this.selectedCharacter[value], function(key, value){
-      if( input === value){
-        $("#answer-overlay h2").html("Yes")
-        $("#answer-overlay").fadeIn(500).delay(1000).fadeOut(500);
-        // $('#info-display').html("Yes!")
-      } else {
-        $("#answer-overlay h2").html("No!")
-        $("#answer-overlay").fadeIn(500).delay(1000).fadeOut(500);
-      }
-    })
+    var checker = this.selectedCharacter[value]
 
-    var counter = 0;
-    for(var i=0;i<this.characters.length;i++){
-      for(var j=0;j<this.characters[i][value].length;j++){
-        if(this.characters[i][value][j] !== this.selectedCharacter[value][j]){
+    var answerRightorWrong = checker.indexOf(choice)
+    if(answerRightorWrong !== -1){
+      for(var i=0;i<this.characters.length;i++){
+        if(this.characters[i][value].indexOf(choice) === -1){
           var id = this.characters[i]["name"]
-          counter++;
-          console.log(counter);
+          console.log(value);
+          console.log(id);
           $('#' + id).css("background","#ffce21");          
           $('#' + id).css("color", "#ffce21");
-          }
-        };
+          $('#' + id).hide();
+        }
+        }
+    }else{
+      for(var i=0;i<this.characters.length;i++){
+        if(this.characters[i][value].indexOf(choice) !== -1){
+          var id = this.characters[i]["name"]
+          console.log(value);
+          console.log(id);
+          $('#' + id).css("background","#ffce21");          
+          $('#' + id).css("color", "#ffce21");
+          $('#' + id).hide();
+        }
+    }
+
+
+      // for(var j=0;j<this.characters[i][value].length;j++){
+
+      //   var arrayLength = this.characters[i][value].length
+
+        // this.characters[i][value][j]
+        // console.log(this.selectedCharacter[value])
+
+
+        // };
       }
     };
     guessWho.printBoard();

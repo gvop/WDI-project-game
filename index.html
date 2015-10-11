@@ -40,36 +40,39 @@
   </div>
 
   <div id="question-box">
-    <h2>Features</h2>
+    <h2 class="sub-font"><span>First:</span> select a feature</h2>
     <form id="features">
-      <input id="01" type="radio" name="features" value="gender"> 
-      <label for="01">Gender</label>
+      <input id="01" type="radio" name="features" value="gender" checked ><label for="01">Gender?</label>
 
-      <input id="02" type="radio" name="features" value="head"> 
-      <label for="02">Shape head?</label>
+      <input id="02" type="radio" name="features" value="head"><label for="02">Head?</label>
 
-      <input id="03" type="radio" name="features" value="nose"> 
-      <label for="03">What type of nose?</label>
+      <input id="03" type="radio" name="features" value="nose"><label for="03">Nose?</label>
 
-      <input id="04" type="radio" name="features" value="hair"> 
-      <label for="04">What sort of hair?</label>
+      <input id="04" type="radio" name="features" value="ears"><label for="04">Ears?</label>
 
-      <input id="05" type="radio" name="features" value="expresion"> 
-      <label for="05">Face expresion?</label>
+      <input id="05" type="radio" name="features" value="eyes"><label for="05">Eyes?</label>
 
-      <input id="06" type="radio" name="features" value="cheeks">
-      <label for="06">Cheeks?</label>
+      <input id="06" type="radio" name="features" value="cheeks"><label for="06">Cheeks?</label>      
+
+      <input id="07" type="radio" name="features" value="chin"><label for="07">Chin?</label>
+
+      <input id="08" type="radio" name="features" value="mouth"><label for="08">Mouth?</label>
+
+      <input id="09" type="radio" name="features" value="hair"><label for="09">Hair?</label>
+
+      <input id="10" type="radio" name="features" value="expresion"><label for="10">Face expresion?</label>
+
+      <input id="11" type="radio" name="features" value="accessories"><label for="11">Any accessories?</label>
     </form>
-    <h2>Adjective</h2>
+    </div>
+
+  <div id="question-box">
+    <h2 class="sub-font"><span>Second:</span> a related adjective</h2>
     <form id="adjective">
-      <input type="radio" name="adjective" value="man" > Is a man?
-      <input type="radio" name="adjective" value="woman" > Is a woman?
-      <input type="radio" name="adjective" value="red" > Red!
-      <input type="radio" name="adjective" value="round"> Round!
-      <input type="radio" name="adjective" value="small"> Small! 
-      <input type="radio" name="adjective" value="smile"> Smile!
-      <input type="radio" name="adjective" value="pear shaped"> Pear Shaped!
-      <input type="radio" name="adjective" value="bold"> Bold!
+     <input type="radio" class="hide" id="man" name="adjective" value="man">
+     <label class="hide" for="man">man</label>
+     <input type="radio" class="hide" id="woman" name="adjective" value="woman">
+     <label class="hide" for="woman">woman</label>
     </form>
     <button id="ask">Ask the Question!</button>
   </div>

@@ -82,3 +82,25 @@ guessWho.setup = function(){
 };
 
 
+$.each(this.selectedCharacter[value], function(key, value){
+  if( input === value){
+    console.log("write")
+    // $("#answer-overlay h2").html("Yes")
+    // $("#answer-overlay").fadeIn(500).delay(1000).fadeOut(500);
+    // $('#info-display').html("Yes!")
+  } else {
+    console.log("wrong")
+    // $("#answer-overlay h2").html("No!")
+    // $("#answer-overlay").fadeIn(500).delay(1000).fadeOut(500);
+  }
+})
+
+// if(this.characters[i][value][j] === this.selectedCharacter[value][j]){
+  var id = this.characters[i]["name"]
+  console.log(value);
+  console.log(id);
+  $('#' + id).css("background","#ffce21");          
+  $('#' + id).css("color", "#ffce21");
+  $('#' + id).hide();
+  // }ß
+
