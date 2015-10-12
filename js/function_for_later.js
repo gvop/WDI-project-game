@@ -160,17 +160,6 @@ $.each(this.selectedCharacter[value], function(key, value){
     }
   });
 
-// this.turn = false;
-// if(!this.turn){
-//  setTimeout(function(){
-//    console.log(guessWho.selectedCharacter)
-//    $('#answer-overlay img').attr("src",guessWho.selectedCharacter.picture[0])
-//    // $('#answer-overlay h2').
-//    guessWho.questionBuilder() //function for computer question
-
-//    $('#answer-overlay').fadeIn();
-//  }, 1000);
-// }
 
 list.computerRounds = [{
   1            :   [      ["gender","man", "woman"],

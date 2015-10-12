@@ -12,7 +12,6 @@ hr {
 }
 
 /** TYPOGRAFIE **/
-
 .main-font {
 /* font-family: 'Dancing Script', cursive; */
  font-family: 'Josefin Sans', sans-serif;
@@ -30,6 +29,7 @@ h1,h2 {
 /*  font-family: 'Dancing Script', cursive;*/
   font-family: 'Josefin Sans', sans-serif;
   margin: 1rem 0;
+  color: black;
 }
 
 h1 {
@@ -49,8 +49,12 @@ h2 {
   vertical-align: top;
   margin-top: 2rem;
   display: inline-block;
-  color: black;
+  color: white;
   font-size: 2rem;
+}
+
+#answer-overlay h2 span{
+  font-weight: 600;
 }
 
 h3,
@@ -64,7 +68,6 @@ button {
 }
 
 
-
 /** IMG **/
 #players-choice{
   display: inline-block;
@@ -75,7 +78,6 @@ img {
 }
 
 /** BOARD **/
-
 #overlay{
   position: fixed;
   background: #ffce21;
@@ -86,20 +88,6 @@ img {
   left: 0;
   right: 0;
 }
-
-#answer-overlay{
-  display: none;
-  position: absolute;
-/*  background: rgba(255,206,33,.4);*/
-  box-shadow: 0 10px 6px -6px #777;
-  background: red;
-  color: white;
-  top:30%;
-  bottom:40%;
-  left: 0;
-  right: 0;
-}
-
 
 .container{
   max-width: 960px; 
@@ -136,7 +124,7 @@ form {
 
 
 button {
-  margin: 2rem;
+  margin: 2rem 0.5rem;
   padding: 5px 10px;
 }
 
@@ -152,15 +140,39 @@ button {
 
 #answer-pic {
   display: inline-block;
-  width: 13%;
+  margin: 3rem 1rem 1rem;
+  width: 17%;
   padding:6rem 0;
   background-size: 120%;
   background-position: center;
+  background-repeat: no-repeat;
+  box-shadow:0 0 2px #000000;
+}
+
+#answer-content{
+  display: inline-block;
+  vertical-align: top;
+  width: 73%;
+}
+
+#answer-overlay{
+  display: none;
+  position: absolute;
+/*  background: rgba(255,206,33,.4);*/
+  box-shadow: 0 10px 6px -6px #777;
+  background: #B33B5C;
+  color: white;
+  top: 130px;
+  width: 700px;
+  height: 300px;
+  left:25%;
+  z-index: 100;
 }
 
 #question-input{
   width: 60%
 }
+
 
 /* Question buttons & Labels*/
 
