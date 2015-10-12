@@ -3,7 +3,10 @@ window.onload = function(){
   //Object
   var guessWho = {
     characters            :   list.characters,
+    computerCharacters    :   list.characters,
+    computerQuestions     :   list.computerRounds,
     questions             :   list.options,
+    turn                  :   true,
     overlay               :   $("#overlay"),
     board                 :   $("#board"),
     playerChoose          :   "",
@@ -22,7 +25,7 @@ window.onload = function(){
   guessWho.setup = (function(){
     for(var i=0;i<guessWho.characters.length;i++){
        $("#overlay .container").append(
-               " <li style='background: url(pictures/" 
+               " <li data='" + guessWho.characters[i].id + "'' style='background: url(pictures/" 
                  + 
                guessWho.characters[i].name 
                + 
@@ -37,18 +40,16 @@ window.onload = function(){
 
     $("li").on("click", function(){
       var choice = this.id; 
-      guessWho.playerChoose = this.id;  
-      console.log(guessWho.playerChoose);
+      guessWho.playerChoose = this.id; 
+      var arrayNumber = this.getAttribute("data");
+      guessWho.selectedCharacter = guessWho.characters[arrayNumber]
       var array = $("li");
-
       $(".character_list").fadeOut("slow");
-
           setTimeout(function(){
                 $("#" + choice).fadeIn("slow");
                 $("#start-title").html("You have choosen " + choice +"!");
                 $("#start").fadeIn("slow");
             }, 500);
-
       })
   })();
 
@@ -63,6 +64,11 @@ window.onload = function(){
       $("#players_choice").html("<li id='" + name + "' class='character_list side_pic'>" + name + "</li>")   //Get picture in the corner up
   })
 
+  //MATH RANDOM
+
+  guessWho.MathRandom = function(value){
+    return Math.floor(Math.random()*value);
+  }
 
   //Get the board show
   guessWho.printBoard = function(){
@@ -112,8 +118,33 @@ window.onload = function(){
     }    
    });
 
-  //Question selecter builder
+  //Question selecter builder computer
   guessWho.questionBuilder = function(features){
+    var computerQuestions = 1;
+    var number = this.MathRandom(guessWho.computerQuestions[0][computerQuestions].length);
+    var araylength = guessWho.computerQuestions[0][computerQuestions][number]
+    console.log()
+    var secondNumber = this.MathRandom(araylength.length -1 ) + 1;
+    console.log(araylength[0])
+    console.log(araylength[secondNumber])
+
+    $('#question-input').text("Features: " + araylength[0] +" Adjective: "+ araylength[secondNumber]);
+
+    $('.confirm').on("click", function(){
+      var confirm = this.value;
+      if(confirm){
+        console.log(yes);
+      } else {
+        console.log(no);
+      }
+    });
+    // var question = confirm("Features: " + araylength[0] +" Adjective: "+ araylength[secondNumber])
+    // if(question){
+    //   alert("Yes")
+    // } else {
+    //   alert("No")
+    // }
+
 
   }
 
@@ -123,48 +154,45 @@ window.onload = function(){
     guessWho.dropDowns(value, choice);
   };
 
+  //Hide pictures
+  guessWho.hidePictures = function(id){
+    $('#' + id).css("background","#ffce21");          
+    $('#' + id).css("color", "#ffce21").delay(1000).hide();
+  }
+
 
  //Makes the right characters disapear 
   guessWho.dropDowns = function(value, choice){
-    var checker = this.selectedCharacter[value]
-
-    var answerRightorWrong = checker.indexOf(choice)
+    var checker = this.selectedCharacter[value] 
+    var answerRightorWrong = checker.indexOf(choice)  
     if(answerRightorWrong !== -1){
       for(var i=0;i<this.characters.length;i++){
         if(this.characters[i][value].indexOf(choice) === -1){
-          var id = this.characters[i]["name"]
-          console.log(value);
-          console.log(id);
-          $('#' + id).css("background","#ffce21");          
-          $('#' + id).css("color", "#ffce21");
-          $('#' + id).hide();
+            var id = this.characters[i]["name"]
+            guessWho.hidePictures(id)
+          }
         }
-        }
-    }else{
-      for(var i=0;i<this.characters.length;i++){
-        if(this.characters[i][value].indexOf(choice) !== -1){
-          var id = this.characters[i]["name"]
-          console.log(value);
-          console.log(id);
-          $('#' + id).css("background","#ffce21");          
-          $('#' + id).css("color", "#ffce21");
-          $('#' + id).hide();
-        }
-    }
-
-
-      // for(var j=0;j<this.characters[i][value].length;j++){
-
-      //   var arrayLength = this.characters[i][value].length
-
-        // this.characters[i][value][j]
-        // console.log(this.selectedCharacter[value])
-
-
-        // };
+      }else{
+        for(var i=0;i<this.characters.length;i++){
+           if(this.characters[i][value].indexOf(choice) !== -1){
+            var id = this.characters[i]["name"]
+            guessWho.hidePictures(id)
+       }
       }
+     }
+     this.turn = false;
+     if(!this.turn){
+      setTimeout(function(){
+        console.log(guessWho.selectedCharacter)
+        $('#answer-overlay img').attr("src",guessWho.selectedCharacter.picture[0])
+        // $('#answer-overlay h2').
+        guessWho.questionBuilder() //function for computer question
+
+        $('#answer-overlay').fadeIn();
+      }, 1000);
+     }
     };
-    guessWho.printBoard();
+    guessWho.printBoard()
 };
 
 

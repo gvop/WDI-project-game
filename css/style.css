@@ -14,7 +14,8 @@ hr {
 /** TYPOGRAFIE **/
 
 .main-font {
- font-family: 'Dancing Script', cursive; 
+/* font-family: 'Dancing Script', cursive; */
+ font-family: 'Josefin Sans', sans-serif;
 }
 
 .sub-font{
@@ -26,7 +27,8 @@ hr {
 }
 
 h1,h2 {
-  font-family: 'Dancing Script', cursive;
+/*  font-family: 'Dancing Script', cursive;*/
+  font-family: 'Josefin Sans', sans-serif;
   margin: 1rem 0;
 }
 
@@ -43,6 +45,14 @@ h2 {
   font-size: 2rem;
 }
 
+#answer-overlay h2{
+  vertical-align: top;
+  margin-top: 2rem;
+  display: inline-block;
+  color: black;
+  font-size: 2rem;
+}
+
 h3,
 .character,
 button {
@@ -54,6 +64,15 @@ button {
 }
 
 
+
+/** IMG **/
+#players-choice{
+  display: inline-block;
+}
+
+img {
+  max-width: 100%;
+}
 
 /** BOARD **/
 
@@ -81,10 +100,6 @@ button {
   right: 0;
 }
 
-#answer-overlay h2{
-  color: black;
-  font-size: 10rem;
-}
 
 .container{
   max-width: 960px; 
@@ -165,6 +180,7 @@ input[type="radio"]:checked + label {
 
 .character,
 .character_list{
+  box-sizing: border-box;
   cursor: pointer;
   background:#0097A7;
   background-size: cover;
@@ -179,12 +195,13 @@ input[type="radio"]:checked + label {
 }
 
 .character:hover{
-  width: 10%;
+  width: 16%;
   padding: 9% 4.5%;
 
 }
 
 .character_list:hover{
+  width: 10.2%;
   box-shadow:0 0 10px #000000;
 }
 
@@ -197,6 +214,7 @@ input[type="radio"]:checked + label {
 .side_pic{
   padding:4.5rem 2.3rem;
 }
+
 
 @media only screen and (max-width:800px){
      #question-box{
