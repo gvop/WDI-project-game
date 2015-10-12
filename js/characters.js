@@ -15,6 +15,10 @@ list.options =[{
   'accessories' :   ["hat","earring","glasses","bows"]  
 }]
 
+list.charactersNames = [{
+  'namelist'   :    ["alex", "alfred", "anita", "anna", "bernard", "bill", "charles", "claire", "david", "eric", "frans", "george", "herman", "joe", "maria", "max", "paul", "peter", "philip", "richard", "robert", "sam","susan", "tom"]
+}]
+
 list.computerRounds = [{
   1            :   [["gender","man", "woman"],
                           ["ears","small","normal", "big"], 

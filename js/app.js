@@ -4,7 +4,10 @@ window.onload = function(){
   var guessWho = {
     characters            :   list.characters,
     computerCharacters    :   list.characters,
+    computerNames         :   list.charactersNames["namelist"]
     computerQuestions     :   list.computerRounds,
+    computerFeatures      :   "",
+    computeradjective     :   "",
     questions             :   list.options,
     turn                  :   true,
     overlay               :   $("#overlay"),
@@ -20,6 +23,7 @@ window.onload = function(){
                               guessWho.featuresCheck(this.features, this.adjective);
         }
   };
+
 
   //Function to let player choose computer character
   guessWho.setup = (function(){
@@ -125,6 +129,7 @@ window.onload = function(){
     var araylength = guessWho.computerQuestions[0][computerQuestions][number]
     console.log()
     var secondNumber = this.MathRandom(araylength.length -1 ) + 1;
+
     console.log(araylength[0])
     console.log(araylength[secondNumber])
 
@@ -132,12 +137,21 @@ window.onload = function(){
 
     $('.confirm').on("click", function(){
       var confirm = this.value;
-      if(confirm){
-        console.log(yes);
-      } else {
-        console.log(no);
-      }
-    });
+      if(confirm !== -1){
+        for(var i=0;i<guessWho.computerCharacters.length;i++){
+          if(guessWho.computerCharacters[i][araylength[0]].indexOf(araylength[secondNumber]) === -1){
+              console.log(guessWho.computerCharacters[i])
+
+            }
+          }
+        }else{
+          for(var i=0;i<guessWho.computerCharacters.length;i++){
+             if(guessWho.computerCharacters[i][araylength[0]].indexOf(araylength[secondNumber]) !== -1){
+
+         }
+        }
+    };
+  });
     // var question = confirm("Features: " + araylength[0] +" Adjective: "+ araylength[secondNumber])
     // if(question){
     //   alert("Yes")
@@ -159,7 +173,6 @@ window.onload = function(){
     $('#' + id).css("background","#ffce21");          
     $('#' + id).css("color", "#ffce21").delay(1000).hide();
   }
-
 
  //Makes the right characters disapear 
   guessWho.dropDowns = function(value, choice){
@@ -192,7 +205,7 @@ window.onload = function(){
       }, 1000);
      }
     };
-    guessWho.printBoard()
+  guessWho.printBoard()
 };
 
 
