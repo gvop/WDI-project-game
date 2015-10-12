@@ -1,11 +1,14 @@
 window.onload = function(){
 
+  var idCharacter;
+
   //Object
   var guessWho = {
+    round                 :   0,
     characters            :   list.characters,
     computerCharacters    :   list.characters,
-    computerNames         :   list.charactersNames["namelist"]
-    computerQuestions     :   list.computerRounds,
+    computerNames         :   list.charactersNames,
+    computerQuestions     :   list.computerQuestions,
     computerFeatures      :   "",
     computeradjective     :   "",
     questions             :   list.options,
@@ -13,13 +16,12 @@ window.onload = function(){
     overlay               :   $("#overlay"),
     board                 :   $("#board"),
     playerChoose          :   "",
-    selectedCharacter     :   {},
     startButton           :   $("#start"),
     askButton             :   $("#ask"),
+    randomNumber          :   function(value){return Math.floor(Math.random()*value)},
     askQuestion           :   function(){
                               this.features   =   $("input:radio[name='features']:checked").val();
                               this.adjective  =   $("input:radio[name='adjective']:checked").val();
-
                               guessWho.featuresCheck(this.features, this.adjective);
         }
   };
@@ -30,16 +32,9 @@ window.onload = function(){
     for(var i=0;i<guessWho.characters.length;i++){
        $("#overlay .container").append(
                " <li data='" + guessWho.characters[i].id + "'' style='background: url(pictures/" 
-                 + 
-               guessWho.characters[i].name 
-               + 
+                 + guessWho.characters[i].name + 
                ".png); background-size: 120%;background-position: 50% 46%;' id='" 
-               + 
-               guessWho.characters[i].name 
-               + 
-               "'class='character_list'>" 
-               + 
-               "</li>")
+               + guessWho.characters[i].name + "'class='character_list'>"+ "</li>")
            }
 
     $("li").on("click", function(){
@@ -57,6 +52,11 @@ window.onload = function(){
       })
   })();
 
+  //
+  guessWho.computersTurn = function(){
+
+  }
+
 
   //Call function on "ask question"
   guessWho.askButton.on("click", guessWho.askQuestion)
@@ -68,101 +68,43 @@ window.onload = function(){
       $("#players_choice").html("<li id='" + name + "' class='character_list side_pic'>" + name + "</li>")   //Get picture in the corner up
   })
 
-  //MATH RANDOM
-
-  guessWho.MathRandom = function(value){
-    return Math.floor(Math.random()*value);
-  }
 
   //Get the board show
   guessWho.printBoard = function(){
+
+    //selects a random character
     var randomNumber = Math.floor(Math.random()*24);
-    console.log(randomNumber)                     //RANDOM NUMBER
-    var selected = this.characters[randomNumber]
-    this.selectedCharacter = selected
+    idCharacter = randomNumber
+    console.log(this.characters[idCharacter]["name"]); //TO SEE DURING TEST WHOM THE PERSON IS
 
-
-    console.log(this.selectedCharacter["name"][0]); //TO SEE DURING TEST WHOM THE PERSON IS
-
+    //prints the board
     for(var i=0;i<this.characters.length;i++){
        this.board.append(
-        " <li style='background: url(pictures/" 
-          + 
-        this.characters[i].name 
-        + 
-        ".png); background-size: 120%;background-position: 50% 46%;' id='" 
-        + 
-        this.characters[i].name 
-        + 
-        "'class='character'>" 
-        + 
-        "</li>")
-    }
-
-      $(".character").on("click", function(){
-      if(this.id ===guessWho.selectedCharacter["name"][0]){
-        console.log("Winner!");
+        " <li style='background: url(pictures/"+ this.characters[i].name 
+        + ".png); background-size: 120%;background-position: 50% 46%;' id='" 
+        + this.characters[i].name + "'class='character'>"  + "</li>")
+    } $(".character").on("click", function(){
+      if(this.id ===guessWho.characters[idCharacter]["name"][0]){
+        alert("Winner!");
       }else{
         guessWho.numberOfGuesses++;
-        console.log("Not the right person!");
+        alert("Not the right person!");
       };
     });
   };
 
+  //makes radio buttons clickable
   $("input:radio").on("click", function(){
     var object = guessWho.questions[0][this.value]  
-    // console.log(object)
     $(".hide").remove();
     for(var i=0;i<object.length;i++){
-
           var constructor = '<input type="radio" class="hide" id="'+ object[i] +'" name="adjective" value="'+ 
           object[i] +'" > <label class="hide" for="'+ object[i] + '">'+ object[i] +'</label>'
-
           $("#adjective").append(constructor)     
     }    
    });
 
-  //Question selecter builder computer
-  guessWho.questionBuilder = function(features){
-    var computerQuestions = 1;
-    var number = this.MathRandom(guessWho.computerQuestions[0][computerQuestions].length);
-    var araylength = guessWho.computerQuestions[0][computerQuestions][number]
-    console.log()
-    var secondNumber = this.MathRandom(araylength.length -1 ) + 1;
-
-    console.log(araylength[0])
-    console.log(araylength[secondNumber])
-
-    $('#question-input').text("Features: " + araylength[0] +" Adjective: "+ araylength[secondNumber]);
-
-    $('.confirm').on("click", function(){
-      var confirm = this.value;
-      if(confirm !== -1){
-        for(var i=0;i<guessWho.computerCharacters.length;i++){
-          if(guessWho.computerCharacters[i][araylength[0]].indexOf(araylength[secondNumber]) === -1){
-              console.log(guessWho.computerCharacters[i])
-
-            }
-          }
-        }else{
-          for(var i=0;i<guessWho.computerCharacters.length;i++){
-             if(guessWho.computerCharacters[i][araylength[0]].indexOf(araylength[secondNumber]) !== -1){
-
-         }
-        }
-    };
-  });
-    // var question = confirm("Features: " + araylength[0] +" Adjective: "+ araylength[secondNumber])
-    // if(question){
-    //   alert("Yes")
-    // } else {
-    //   alert("No")
-    // }
-
-
-  }
-
-
+ 
   //Checker 
   guessWho.featuresCheck = function(value, choice){
     guessWho.dropDowns(value, choice);
@@ -176,35 +118,72 @@ window.onload = function(){
 
  //Makes the right characters disapear 
   guessWho.dropDowns = function(value, choice){
-    var checker = this.selectedCharacter[value] 
+    var checker = this.characters[idCharacter][value];
     var answerRightorWrong = checker.indexOf(choice)  
-    if(answerRightorWrong !== -1){
-      for(var i=0;i<this.characters.length;i++){
-        if(this.characters[i][value].indexOf(choice) === -1){
-            var id = this.characters[i]["name"]
-            guessWho.hidePictures(id)
+    if(answerRightorWrong>=0){  //answer is YES
+        console.log("the character has this fueater and adjective")
+        for(var i=0;i<guessWho.characters.length;i++){
+          for(var j=0;j<guessWho.characters[i][value].length;j++){
+            var choiceChecker = guessWho.characters[i][value].indexOf(choice)
+            if(choiceChecker<0){
+                  var id = this.characters[i]["name"]
+                  guessWho.hidePictures(id)
+            }
           }
         }
-      }else{
-        for(var i=0;i<this.characters.length;i++){
-           if(this.characters[i][value].indexOf(choice) !== -1){
-            var id = this.characters[i]["name"]
-            guessWho.hidePictures(id)
-       }
-      }
-     }
-     this.turn = false;
-     if(!this.turn){
-      setTimeout(function(){
-        console.log(guessWho.selectedCharacter)
-        $('#answer-overlay img').attr("src",guessWho.selectedCharacter.picture[0])
-        // $('#answer-overlay h2').
-        guessWho.questionBuilder() //function for computer question
+      } else {
+        console.log("the character NOT have this fueater and adjective")
+        for(var i=0;i<guessWho.characters.length;i++){
+          for(var j=0;j<guessWho.characters[i][value].length;j++){
+            var choiceChecker = guessWho.characters[i][value].indexOf(choice)
+            if(choiceChecker>=0){
+                  var id = this.characters[i]["name"]
+                  guessWho.hidePictures(id)
+            }
+          }
+        }
+      }  guessWho.round++; 
+        //computer asks a question
+         if(guessWho.round %2 !== 0){
+            console.log(guessWho.round)
+           var categorie = this.computerQuestions[guessWho.round]; 
+           var maxNumber = categorie.length
+           var questionNumber = this.randomNumber(maxNumber); 
+           var nextRandom = this.randomNumber((this.computerQuestions[guessWho.round][questionNumber].length) -1 ) + 1; 
+           var check = confirm((this.computerQuestions[guessWho.round][questionNumber][0])
+             +" " + (this.computerQuestions[guessWho.round][questionNumber][nextRandom]))
 
-        $('#answer-overlay').fadeIn();
-      }, 1000);
-     }
-    };
+           if(check){ 
+            for(var i=0;i<guessWho.characters.length;i++){
+              for(var j=0;j<guessWho.characters[i][value].length;j++){
+                var choiceChecker = guessWho.characters[i][value].indexOf(choice)
+                  if(choiceChecker>=0){
+                    var id = this.characters[i]["id"][0]
+                    console.log(id)
+                    guessWho.computerNames["namelist"][id] = null;
+                    console.log(guessWho.computerNames["namelist"])
+                    
+            }
+          }
+        }
+            }else{
+                for(var i=0;i<guessWho.characters.length;i++){
+                  for(var j=0;j<guessWho.characters[i][value].length;j++){
+                    var choiceChecker = guessWho.characters[i][value].indexOf(choice)
+                      if(choiceChecker<0){
+                        var id = this.characters[i]["id"][0]
+                        console.log(id)
+                        guessWho.computerNames["namelist"][id] = null;
+                        console.log(guessWho.computerNames["namelist"])
+                        
+                }
+              }
+
+            }
+           guessWho.round++
+         }
+       }
+    }
   guessWho.printBoard()
 };
 

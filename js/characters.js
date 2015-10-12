@@ -1,41 +1,38 @@
 list = {};                  //Object with characters in there
 
 list.options =[{
-  'gender'      :   ["man", "woman"],
+  'gender'      :   ["gent", "lady"],
   'head'        :   ["square", "long", "oval", "round"],
   'nose'        :   ["small", "medium", "large", "extra large"],
   'ears'        :   ["small","normal", "big"],
-  'eyes'        :   ["brown","blue","bushy", "neat eyebrows", "normal eyebrows"],
+  'eyes'        :   ["brown","blue","bushy eyebrows", "neat eyebrows", "normal eyebrows"],
   'cheeks'      :   ["rosy"],
   'chin'        :   ["dimple", "pointy", "round"],
   'mouth'       :   ["wide", "small", "small", "big lips"], 
-  'hair'        :   ["black","blonde","white","ginger","short", "long", "bold"],
+  'hair'        :   ["black","blonde","white","ginger","short", "long", "bald"],
   'expresion'   :   ["neutral","happy","grumpy","pout"],
   'facial hair' :   ["moustache", "beard"],
   'accessories' :   ["hat","earring","glasses","bows"]  
 }]
 
-list.charactersNames = [{
-  'namelist'   :    ["alex", "alfred", "anita", "anna", "bernard", "bill", "charles", "claire", "david", "eric", "frans", "george", "herman", "joe", "maria", "max", "paul", "peter", "philip", "richard", "robert", "sam","susan", "tom"]
-}]
+list.computerQuestions = {
+  1            :   [["gender","man", "woman"],["ears","small","normal", "big"],["chin","dimple", "pointy", "round"]],
+  3            :   [ ['nose',"small","normal", "big"],['eyes',"brown","blue","bushy", "neat eyebrows", "normal eyebrows"]],
+  5            :   [      ["hair","black","blonde","white","ginger","short", "long", "bold"],
+                          ["mouth","wide", "small", "small", "big lips"]],
+  7            :   [      ["head","square", "long", "oval", "round"],
+                          ['expresion',"neutral","happy","grumpy","pout"]],
+  9            :   [      ['accessories',"hat","earring","glasses","bows"]]
+}
 
-list.computerRounds = [{
-  1            :   [["gender","man", "woman"],
-                          ["ears","small","normal", "big"], 
-                          ["chin","dimple", "pointy", "round"]],
-  2            :   [],
-  3            :   [],
-  4            :   [],
-  5            :   [],
-  6            :   [],
-  'rest'       :   [],
-  'used'       :   []
-}]
+list.charactersNames = {
+  'namelist'   :    ["alex", "alfred", "anita", "anne", "bernard", "bill", "charles", "claire", "david", "eric", "frans", "george", "herman", "joe", "maria", "max", "paul", "peter", "philip", "richard", "robert", "sam","susan", "tom"]
+}
 
 list.characters = [{
   'id'          :   [00],
   'name'        :   ["alex"],
-  'gender'      :   ["man"],
+  'gender'      :   ["gent"],
   'picture'     :   ["pictures/alex.png"],
   'head'        :   ["square"],
   'nose'        :   ["small"],
@@ -52,7 +49,7 @@ list.characters = [{
 {
   'id'          :   [01],
   'name'        :   ["alfred"],
-  'gender'      :   ["man"],
+  'gender'      :   ["gent"],
   'picture'     :   ["pictures/alfred.png"],
   'head'        :   ["long"],
   'nose'        :   ["medium"],
@@ -69,7 +66,7 @@ list.characters = [{
 {
   'id'          :   [02],
   'name'        :   ["anita"],
-  'gender'      :   ["woman"],
+  'gender'      :   ["lady"],
   'picture'     :   ["pictures/anita.png"],
   'head'        :   ["oval"],
   'nose'        :   ["small"],
@@ -85,7 +82,7 @@ list.characters = [{
 },{
   'id'          :   [03],
   'name'        :   ["anne"],
-  'gender'      :   ["woman"],
+  'gender'      :   ["lady"],
   'picture'     :   ["pictures/anne.png"],
   'head'        :   ["round"],
   'nose'        :   ["large"],
@@ -102,7 +99,7 @@ list.characters = [{
 {
   'id'          :   [04],
   'name'        :   ["bernard"],
-  'gender'      :   ["man"],
+  'gender'      :   ["gent"],
   'picture'     :   ["pictures/bernard.png"],
   'head'        :   ["oval"],
   'nose'        :   ["extra large"],
@@ -119,7 +116,7 @@ list.characters = [{
 {
   'id'          :   [05],
   'name'        :   ["bill"],
-  'gender'      :   ["man"],
+  'gender'      :   ["gent"],
   'picture'     :   ["pictures/bill.png"],
   'head'        :   ["egg shaped"],
   'nose'        :   ["small"],
@@ -136,7 +133,7 @@ list.characters = [{
 {
   'id'          :   [06],
   'name'        :   ["charles"],
-  'gender'      :   ["man"],
+  'gender'      :   ["gent"],
   'picture'     :   ["pictures/charles.png"],
   'head'        :   ["round"],
   'nose'        :   ["medium"],
@@ -153,7 +150,7 @@ list.characters = [{
 {
   'id'          :   [07],
   'name'        :   ["claire"],
-  'gender'      :   ["woman"],
+  'gender'      :   ["lady"],
   'picture'     :   ["pictures/clair.png"],
   'head'        :   ["oval"],
   'nose'        :   ["small"],
@@ -170,7 +167,7 @@ list.characters = [{
 {
   'id'          :   [08],
   'name'        :   ["david"],
-  'gender'      :   ["man"],
+  'gender'      :   ["gent"],
   'picture'     :   ["pictures/david.png"],
   'head'        :   ["long"],
   'nose'        :   ["small"],
@@ -187,7 +184,7 @@ list.characters = [{
 {
   'id'          :   [09],
   'name'        :   ["eric"],
-  'gender'      :   ["man"],
+  'gender'      :   ["gent"],
   'picture'     :   ["pictures/eric.png"],
   'head'        :   ["square"],
   'nose'        :   ["small"],
@@ -204,7 +201,7 @@ list.characters = [{
 {
   'id'          :   [10],
   'name'        :   ["frans"],
-  'gender'      :   ["man"],
+  'gender'      :   ["gent"],
   'picture'     :   ["pictures/frans.png"],
   'head'        :   ["square"],
   'nose'        :   ["small"],
@@ -221,7 +218,7 @@ list.characters = [{
 {
   'id'          :   [11],
   'name'        :   ["george"],
-  'gender'      :   ["man"],
+  'gender'      :   ["gent"],
   'picture'     :   ["pictures/george.png"],
   'head'        :   ["round"],
   'nose'        :   ["medium"],
@@ -238,7 +235,7 @@ list.characters = [{
 {
   'id'          :   [12],
   'name'        :   ["herman"],
-  'gender'      :   ["man"],
+  'gender'      :   ["gent"],
   'picture'     :   ["pictures/herman.png"],
   'head'        :   ["oval"],
   'nose'        :   ["extra large"],
@@ -247,7 +244,7 @@ list.characters = [{
   'cheeks'      :   ["none"],
   'chin'        :   ["pointy"],
   'mouth'       :   ["narrow", "small lips"], 
-  'hair'        :   ["ginger","bold"],
+  'hair'        :   ["ginger","bald"],
   'expresion'   :   ["neutral"],
   'facial hair' :   ["none"],
   'accessories' :   ["none"]  
@@ -255,7 +252,7 @@ list.characters = [{
 {
   'id'          :   [13],
   'name'        :   ["joe"],
-  'gender'      :   ["man"],
+  'gender'      :   ["gent"],
   'picture'     :   ["pictures/joe.png"],
   'head'        :   ["oval"],
   'nose'        :   ["medium"],
@@ -272,7 +269,7 @@ list.characters = [{
 {
   'id'          :   [14],
   'name'        :   ["maria"],
-  'gender'      :   ["woman"],
+  'gender'      :   ["lady"],
   'picture'     :   ["pictures/maria.png"],
   'head'        :   ["oval"],
   'nose'        :   ["medium"],
@@ -289,7 +286,7 @@ list.characters = [{
 {
   'id'          :   [15],
   'name'        :   ["max"],
-  'gender'      :   ["man"],
+  'gender'      :   ["gent"],
   'picture'     :   ["pictures/max.png"],
   'head'        :   ["round"],
   'nose'        :   ["extra large"],
@@ -306,7 +303,7 @@ list.characters = [{
 {
   'id'          :   [16],
   'name'        :   ["paul"],
-  'gender'      :   ["man"],
+  'gender'      :   ["gent"],
   'picture'     :   ["pictures/paul.png"],
   'head'        :   ["oval"],
   'nose'        :   ["small"],
@@ -323,7 +320,7 @@ list.characters = [{
 { 
   'id'          :   [17],
   'name'        :   ["peter"],
-  'gender'      :   ["man"],
+  'gender'      :   ["gent"],
   'picture'     :   ["pictures/peter.png"],
   'head'        :   ["square"],
   'nose'        :   ["extra large"],
@@ -340,7 +337,7 @@ list.characters = [{
 {
   'id'          :   [18],
   'name'        :   ["philip"],
-  'gender'      :   ["man"],
+  'gender'      :   ["gent"],
   'picture'     :   ["pictures/philip.png"],
   'head'        :   ["round"],
   'nose'        :   ["medium"],
@@ -356,7 +353,7 @@ list.characters = [{
 },{
   'id'          :   [19],
   'name'        :   ["richard"],
-  'gender'      :   ["man"],
+  'gender'      :   ["gent"],
   'picture'     :   ["pictures/richard.png"],
   'head'        :   ["long"],
   'nose'        :   ["medium"],
@@ -365,7 +362,7 @@ list.characters = [{
   'cheeks'      :   ["none"],
   'chin'        :   ["none"],
   'mouth'       :   ["narrow", "small lips"], 
-  'hair'        :   ["brown","bold"],
+  'hair'        :   ["brown","bald"],
   'expresion'   :   ["neutral"],
   'facial hair' :   ["moustache", "beard"],
   'accessories' :   ["none"]  
@@ -373,7 +370,7 @@ list.characters = [{
 {
   'id'          :   [20],
   'name'        :   ["robert"],
-  'gender'      :   ["man"],
+  'gender'      :   ["gent"],
   'picture'     :   ["pictures/robert.png"],
   'head'        :   ["oval"],
   'nose'        :   ["extra large"],
@@ -390,7 +387,7 @@ list.characters = [{
 { 
   'id'          :   [21],
   'name'        :   ["sam"],
-  'gender'      :   ["man"],
+  'gender'      :   ["gent"],
   'picture'     :   ["pictures/sam.png"],
   'head'        :   ["round"],
   'nose'        :   ["medium"],
@@ -399,7 +396,7 @@ list.characters = [{
   'cheeks'      :   ["none"],
   'chin'        :   ["pointy"],
   'mouth'       :   ["small", "small lips"], 
-  'hair'        :   ["white","bold"],
+  'hair'        :   ["white","bald"],
   'expresion'   :   ["happy"],
   'facial hair' :   ["none"],
   'accessories' :   ["glasses"]  
@@ -407,7 +404,7 @@ list.characters = [{
 {
   'id'          :   [22],
   'name'        :   ["susan"],
-  'gender'      :   ["woman"],
+  'gender'      :   ["lady"],
   'picture'     :   ["pictures/susan.png"],
   'head'        :   ["oval"],
   'nose'        :   ["small"],
@@ -424,7 +421,7 @@ list.characters = [{
 {
   'id'          :   [23],
   'name'        :   ["tom"],
-  'gender'      :   ["man"],
+  'gender'      :   ["gent"],
   'picture'     :   ["pictures/tom.png"],
   'head'        :   ["long"],
   'nose'        :   ["medium"],
@@ -433,7 +430,7 @@ list.characters = [{
   'cheeks'      :   ["none"],
   'chin'        :   ["round"],
   'mouth'       :   ["narrow", "small lips"], 
-  'hair'        :   ["black","bold"],
+  'hair'        :   ["black","bald"],
   'expresion'   :   ["happy"],
   'facial hair' :   ["none"],
   'accessories' :   ["glasses"]  

@@ -104,3 +104,99 @@ $.each(this.selectedCharacter[value], function(key, value){
   $('#' + id).hide();
   // }ß
 
+  var namesLeft;
+  for(var i=0;i<guessWho.computerNames["namelist"].length;i++){
+    if(guessWho.computerNames["namelist"] !== null){
+      namesLeft++
+    }
+  } if(namesLeft === 1){
+    alert("I'm going to guess")
+  }else{
+  
+    var number = this.MathRandom(guessWho.computerQuestions[0][computerQuestions].length);
+    var araylength = guessWho.computerQuestions[0][computerQuestions][number]
+
+    console.log("the number of the array " + computerQuestions);
+
+    console.log(guessWho.computerQuestions[0][computerQuestions][number])
+
+    var secondNumber = this.MathRandom(araylength.length -1 ) + 1;
+
+    console.log(araylength[0])
+    console.log(araylength[secondNumber])
+
+    $('#question-input').text("Features: " + araylength[0] +" Adjective: "+ araylength[secondNumber]);
+
+    $('.confirm').on("click", function(){
+      var confirm = this.value;
+      if(confirm === -1){
+        for(var i=0;i<guessWho.computerCharacters.length;i++){
+          if(guessWho.computerCharacters[i][araylength[0]].indexOf(araylength[secondNumber]) === -1){
+            console.log(guessWho.computerCharacters[i].name[0])
+            var value   = guessWho.computerCharacters[i].name[0]
+            var search  = guessWho.computerNames["namelist"]
+            var index   = search.indexOf(value);
+            guessWho.computerNames["namelist"][index] = null;
+            console.log(guessWho.computerNames["namelist"]);
+            console.log(computerQuestions)
+            $("#answer-overlay").fadeOut()
+
+            }
+          }
+        }else{
+          for(var i=0;i<guessWho.computerCharacters.length;i++){
+             if(guessWho.computerCharacters[i][araylength[0]].indexOf(araylength[secondNumber]) !== -1){
+              console.log(guessWho.computerCharacters[i].name[0])
+              var value   = guessWho.computerCharacters[i].name[0]
+              var search  = guessWho.computerNames["namelist"]
+              var index   = search.indexOf(value);
+              guessWho.computerNames["namelist"][index] = null;
+              console.log(guessWho.computerNames["namelist"])
+              console.log(computerQuestions)
+              $("#answer-overlay").fadeOut()
+
+         }
+      }
+    }
+  });
+
+// this.turn = false;
+// if(!this.turn){
+//  setTimeout(function(){
+//    console.log(guessWho.selectedCharacter)
+//    $('#answer-overlay img').attr("src",guessWho.selectedCharacter.picture[0])
+//    // $('#answer-overlay h2').
+//    guessWho.questionBuilder() //function for computer question
+
+//    $('#answer-overlay').fadeIn();
+//  }, 1000);
+// }
+
+list.computerRounds = [{
+  1            :   [      ["gender","man", "woman"],
+                          ["ears","small","normal", "big"], 
+                          ["chin","dimple", "pointy", "round"]],
+  2            :   [      ['nose',"small","normal", "big"]
+                          ['eyes',"brown","blue","bushy", "neat eyebrows", "normal eyebrows"]],
+  3            :   [      ["head","black","blonde","white","ginger","short", "long", "bold"]
+                          ["mouth","black","blonde","white","ginger","short", "long", "bold"]],
+  4            :   [],
+  5            :   [],
+  6            :   [],
+  'rest'       :   [],
+  'used'       :   []
+}]
+
+// for(var i=0;i<this.characters.length;i++){
+  
+//   if(this.characters[i][value].indexOf(choice) !== -1){
+//       var id = this.characters[i]["name"]
+//       guessWho.hidePictures(id)
+//     }
+//   }
+
+// for(var i=0;i<this.characters.length;i++){
+//    if(this.characters[i][value].indexOf(choice) === -1){
+//     var id = this.characters[i]["name"]
+//     guessWho.hidePictures(id)
+
