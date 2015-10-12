@@ -143,42 +143,58 @@ window.onload = function(){
           }
         }
       }  guessWho.round++; 
+      var counter = 0;
+      var one = " ";
+      var two = " ";
         //computer asks a question
          if(guessWho.round %2 !== 0){
-            console.log(guessWho.round)
-           var categorie = this.computerQuestions[guessWho.round]; 
-           var maxNumber = categorie.length
-           var questionNumber = this.randomNumber(maxNumber); 
-           var nextRandom = this.randomNumber((this.computerQuestions[guessWho.round][questionNumber].length) -1 ) + 1; 
-           var check = confirm((this.computerQuestions[guessWho.round][questionNumber][0])
-             +" " + (this.computerQuestions[guessWho.round][questionNumber][nextRandom]))
 
-           if(check){ 
-            for(var i=0;i<guessWho.characters.length;i++){
-              for(var j=0;j<guessWho.characters[i][value].length;j++){
-                var choiceChecker = guessWho.characters[i][value].indexOf(choice)
-                  if(choiceChecker>=0){
-                    var id = this.characters[i]["id"][0]
-                    console.log(id)
-                    guessWho.computerNames["namelist"][id] = null;
-                    console.log(guessWho.computerNames["namelist"])
-                    
+          for(var i=0;i<guessWho.computerNames['namelist'].length;i++){
+            console.log(guessWho.computerNames['namelist'][i])
+             var categorie = this.computerQuestions[guessWho.round]; 
+             var maxNumber = categorie.length
+             var questionNumber = this.randomNumber(maxNumber); 
+             var nextRandom = this.randomNumber((this.computerQuestions[guessWho.round][questionNumber].length) -1 ) + 1; 
+             var partOne = this.computerQuestions[guessWho.round][questionNumber][0]
+             var partTwo = this.computerQuestions[guessWho.round][questionNumber][nextRandom]
+             var check;
+
+             // $('#answer-overlay img').attr("src",guessWho.characters[idCharacter].picture[0])
+             $('#answer-pic').css("background-image", "url(" + guessWho.characters[idCharacter].picture[0] + ")"); 
+             $('#answer-overlay').fadeIn();
+             $('#question-input').text(partOne + " " + partTwo)
+
+             $(".confirm").on("click", function(){
+              check = this.value;
+              $('#answer-overlay').fadeOut()
+             })
+
+             if(check){ 
+              for(var i=0;i<guessWho.characters.length;i++){
+                for(var j=0;j<guessWho.characters[i][value].length;j++){
+                  var choiceChecker = guessWho.characters[i][value].indexOf(choice)
+                    if(choiceChecker>=0){
+                      var id = this.characters[i]["id"][0]
+                      console.log(id)
+                      guessWho.computerNames["namelist"][id] = null;
+                      console.log(guessWho.computerNames["namelist"])
+                      
+              }
             }
           }
-        }
-            }else{
-                for(var i=0;i<guessWho.characters.length;i++){
-                  for(var j=0;j<guessWho.characters[i][value].length;j++){
-                    var choiceChecker = guessWho.characters[i][value].indexOf(choice)
-                      if(choiceChecker<0){
-                        var id = this.characters[i]["id"][0]
-                        console.log(id)
-                        guessWho.computerNames["namelist"][id] = null;
-                        console.log(guessWho.computerNames["namelist"])
-                        
+              }else{
+                  for(var i=0;i<guessWho.characters.length;i++){
+                    for(var j=0;j<guessWho.characters[i][value].length;j++){
+                      var choiceChecker = guessWho.characters[i][value].indexOf(choice)
+                        if(choiceChecker<0){
+                          var id = this.characters[i]["id"][0]
+                          console.log(id)
+                          guessWho.computerNames["namelist"][id] = null;
+                          console.log(guessWho.computerNames["namelist"])
+                          
+                  }
                 }
               }
-
             }
            guessWho.round++
          }

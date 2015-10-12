@@ -148,6 +148,20 @@ button {
   margin: 2rem 0px;
 }
 
+/* Answer box */
+
+#answer-pic {
+  display: inline-block;
+  width: 13%;
+  padding:6rem 0;
+  background-size: 120%;
+  background-position: center;
+}
+
+#question-input{
+  width: 60%
+}
+
 /* Question buttons & Labels*/
 
 input[type="radio"]{
