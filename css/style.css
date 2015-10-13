@@ -45,12 +45,22 @@ h2 {
   font-size: 2rem;
 }
 
+
 #answer-overlay h2{
   vertical-align: top;
   margin-top: 2rem;
   display: inline-block;
   color: white;
   font-size: 2rem;
+}
+
+#question-input h2 {
+  font-size: 3rem;
+  color: white;
+}
+
+#question-input h2::first-letter{
+  text-transform: capitalize;
 }
 
 #answer-overlay h2 span{
@@ -114,7 +124,7 @@ img {
 #question-box {
   vertical-align: top;
   width: 34%;
-  margin: 2rem;
+  margin: 2rem 0;
   display: inline-block;
 }
 
@@ -124,8 +134,23 @@ form {
 
 
 button {
+  font-family:'Montserrat', sans-serif;
+  font-weight: 300;
+  color: black;
+  background:#ddd; 
   margin: 2rem 0.5rem;
-  padding: 5px 10px;
+  padding: 7px 23px;
+  border-radius: 7px;
+  transition: all .5s;
+}
+
+button:active {
+outline: none;
+border: none;
+}
+
+button:hover{
+  box-shadow:0 0 6px #000000;
 }
 
 #start{
@@ -142,7 +167,7 @@ button {
   display: inline-block;
   margin: 3rem 1rem 1rem;
   width: 17%;
-  padding:6rem 0;
+  padding:8rem 0;
   background-size: 120%;
   background-position: center;
   background-repeat: no-repeat;
@@ -157,15 +182,16 @@ button {
 
 #answer-overlay{
   display: none;
-  position: absolute;
+/*  position: fixed;*/
 /*  background: rgba(255,206,33,.4);*/
-  box-shadow: 0 10px 6px -6px #777;
+  box-shadow: 0px 2px 17px 2px black;
   background: #B33B5C;
   color: white;
   top: 130px;
-  width: 700px;
+ /* width: 700px;
   height: 300px;
-  left:25%;
+  left: 50%;
+  top: 50%;*/
   z-index: 100;
 }
 

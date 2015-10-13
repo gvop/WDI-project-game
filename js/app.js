@@ -9,7 +9,7 @@ window.onload = function(){
     idCharacter           :   "", 
     playerChoose          :   "",
 
-    computerCharacters    :   list.characters,
+    computerCharacters    :   list.computerCharacters,
     computerNames         :   list.charactersNames,
     computerQuestions     :   list.computerQuestions,
     computerFeatures      :   "",
@@ -28,7 +28,7 @@ window.onload = function(){
     askButton             :   $("#ask"),
 
     answerBoxPrint        :   function(text){    
-                                  this.answerOverlay.fadeIn();  
+                                  this.answerOverlay.slideDown();  
                                   this.answerInput.text(" ");
                                   this.answerInput.append(text)},
     randomNumber          :   function(value){return Math.floor(Math.random()*value)},
@@ -132,75 +132,67 @@ window.onload = function(){
  //Computer question maker****************************************
   guessWho.questionMaker = function(){
     console.log("It is round: " + guessWho.round)
-    var arrayLength   = this.computerQuestions[guessWho.round].length
-    var questionGroup = this.computerQuestions[guessWho.round][this.randomNumber(arrayLength)]
-    var features      = questionGroup[0] 
 
-    var numberForAdjective  = (this.randomNumber(arrayLength -1) + 1);
-    var adjective           = questionGroup[numberForAdjective]
-    console.log(features)
-    console.log(adjective)
-    this.computerFeatures   = features
-    this.computerAdjective  = adjective 
-    var text = features + " " + adjective
-    return text
+    var questions = this.computerQuestions[guessWho.round];
+    var question  = questions[this.randomNumber(questions.length)];
+    var ajectiveGuess = question.adjectives[this.randomNumber(question.adjectives.length)];
+ 
+    this.computerFeatures   = question.feature
+    this.computerAdjective  = ajectiveGuess 
+
+    return this.computerFeatures + " " + this.computerAdjective;
   }
 
  //Computer turn
   guessWho.computersTurn = function(){
-    if(guessWho.computerNames < 3){
-      alert("I do a guess")
-    }else{
-      var text = guessWho.questionMaker()
-      this.answerBoxPrint(text)
+    if (guessWho.computerNames.length < 8){
+      var number = this.randomNumber(this.computerNames.length);
+      var name   = this.computerNames[number]
+      var text   = "I do a guess, is it: <br><h2>" + name + "?</h2>"
+      this.answerBoxPrint(text);
       this.answerPicture.css("background-image","url("+guessWho.characters[idPlayerCharacter].picture[0]+")");
+      $(".confirm").hide()
+
+    } else {
+
+      var text = guessWho.questionMaker();
+      this.answerBoxPrint(text);
+
+      this.answerPicture.css("background-image","url("+guessWho.characters[idPlayerCharacter].picture[0]+")");
+      
       $('.confirm').on("click", function(){
-        if(this.value === "true"){
+        if (this.value === "true"){
           console.log(this.value)
-          guessWho.computerYes()
-          guessWho.answerOverlay.fadeOut()
-        }else{
-          guessWho.computerNo()
-          guessWho.answerOverlay.fadeOut()
+          guessWho.filterResults(true);
+          guessWho.answerOverlay.slideUp()
+        } else {
+          guessWho.filterResults(false)
+          guessWho.answerOverlay.slideUp()
         }
-      }); 
-    } 
+      });
+    }
   }
 
-  guessWho.computerYes = function(){
-    console.log("Everybody how is NO goes away")
-    for(var i=0;i<guessWho.characters.length;i++){
-      var featureArray = guessWho.characters[i][guessWho.computerFeatures];
-      var index = featureArray.indexOf(guessWho.computerAdjective)
-        if(index === -1){
-          var name = guessWho.characters[i]['name'][0];
-          console.log(name);
-          var indexNames = guessWho.computerNames["namelist"].indexOf(name)
-          console.log(indexNames)
-          guessWho.computerNames["namelist"].splice(indexNames, 1)
+  guessWho.filterResults = function(yes){
+    var clone = JSON.parse(JSON.stringify(guessWho.computerNames));
+
+    guessWho.computerNames.forEach(function(name, index, array){
+      if (guessWho.computerCharacters[name][guessWho.computerFeatures].indexOf(guessWho.computerAdjective) === -1) {
+        clone.splice(clone.indexOf(name), 1);
       }
-    } console.log(guessWho.computerNames);
+    });
+
+    if (yes) {
+      guessWho.computerNames = clone;
+    } else {
+      guessWho.computerNames = guessWho.computerNames.filter(function(item) {
+        return clone.indexOf(item) === -1;
+      });
+    }
+    
+console.log(guessWho.computerNames);
+    return guessWho.computerNames;
   };
-
-
-  guessWho.computerNo = function(){
-    console.log("Everybody how is not the adjective away")
-     for(var i=0;i<guessWho.characters.length;i++){
-        var featureArray = guessWho.characters[i][guessWho.computerFeatures];
-        var index = featureArray.indexOf(guessWho.computerAdjective)
-          if(index > -1){
-            console.log(guessWho.computerAdjective)
-            var name = guessWho.characters[i]['name'][0];
-            console.log(name);
-            var indexNames = guessWho.computerNames["namelist"].indexOf(name)
-            console.log(indexNames)
-            guessWho.computerNames["namelist"].splice(indexNames, 1)
-
-        }
-      } console.log(guessWho.computerNames)
-   };
-
-
 
  //Select characters that are right/wrong 
   guessWho.dropDowns = function(value, choice){
