@@ -16,13 +16,14 @@ list.options =[{
 }]
 
 list.computerQuestions = {
-  1            :   [["gender","man", "woman"],["ears","small","normal", "big"],["chin","dimple", "pointy", "round"]],
-  3            :   [ ['nose',"small","normal", "big"],['eyes',"brown","blue","bushy", "neat eyebrows", "normal eyebrows"]],
-  5            :   [      ["hair","black","blonde","white","ginger","short", "long", "bold"],
-                          ["mouth","wide", "small", "small", "big lips"]],
-  7            :   [      ["head","square", "long", "oval", "round"],
-                          ['expresion',"neutral","happy","grumpy","pout"]],
-  9            :   [      ['accessories',"hat","earring","glasses","bows"]]
+  1 : [["gender","gent", "lady"]],
+  2 : [['nose',"small", "medium", "large", "extra large"],
+        ['eyes',"brown","blue","bushy", "neat eyebrows", "normal eyebrows"]],
+  3 : [["hair","black","blonde","white","ginger","short", "long", "bold"],
+        ["mouth","wide", "small", "small", "big lips"]],
+  4 : [["head","square", "long", "oval", "round"],
+        ['expresion',"neutral","happy","grumpy","pout"]],
+  5 : [['accessories',"hat","earring","glasses","bows"]]
 }
 
 list.charactersNames = {
@@ -151,7 +152,7 @@ list.characters = [{
   'id'          :   [07],
   'name'        :   ["claire"],
   'gender'      :   ["lady"],
-  'picture'     :   ["pictures/clair.png"],
+  'picture'     :   ["pictures/claire.png"],
   'head'        :   ["oval"],
   'nose'        :   ["small"],
   'ears'        :   ["none"],

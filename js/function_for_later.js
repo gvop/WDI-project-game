@@ -176,16 +176,88 @@ list.computerRounds = [{
   'used'       :   []
 }]
 
-// for(var i=0;i<this.characters.length;i++){
+for(var i=0;i<this.characters.length;i++){
   
-//   if(this.characters[i][value].indexOf(choice) !== -1){
-//       var id = this.characters[i]["name"]
-//       guessWho.hidePictures(id)
-//     }
-//   }
+  if(this.characters[i][value].indexOf(choice) !== -1){
+      var id = this.characters[i]["name"]
+      guessWho.hidePictures(id)
+    }
+  }
 
-// for(var i=0;i<this.characters.length;i++){
-//    if(this.characters[i][value].indexOf(choice) === -1){
-//     var id = this.characters[i]["name"]
-//     guessWho.hidePictures(id)
+for(var i=0;i<this.characters.length;i++){
+   if(this.characters[i][value].indexOf(choice) === -1){
+    var id = this.characters[i]["name"]
+    guessWho.hidePictures(id)
 
+  var counter = 0;
+  var one = " ";
+  var two = " ";
+    //computer asks a question
+     if(guessWho.round %2 !== 0){
+
+      for(var i=0;i<guessWho.computerNames['namelist'].length;i++){
+        console.log(guessWho.computerNames['namelist'][i])
+         var categorie = this.computerQuestions[guessWho.round]; 
+         var maxNumber = categorie.length
+         var questionNumber = this.randomNumber(maxNumber); 
+         var nextRandom = this.randomNumber((this.computerQuestions[guessWho.round][questionNumber].length) -1 ) + 1; 
+         var partOne = this.computerQuestions[guessWho.round][questionNumber][0]
+         var partTwo = this.computerQuestions[guessWho.round][questionNumber][nextRandom]
+         var check;
+
+         guessWho.answerPicture.css("background-image", "url(" + guessWho.characters[idPlayerCharacter].picture[0] + ")");
+         // var blur = 'blur(5px)';
+        function bluring(blur){
+           $('#board').css('filter',blur).css('webkitFilter',blur)
+             .css('mozFilter',blur).css('oFilter',blur).css('msFilter',blur);
+           $('#question-box').css('filter',blur).css('webkitFilter',blur)
+             .css('mozFilter',blur).css('oFilter',blur).css('msFilter',blur);
+           }
+
+          bluring('blur(5px)')
+
+         guessWho.answerOverlay.fadeIn();
+         guessWho.answerInput.text(" ");
+         guessWho.answerInput.append("<span>Does your character has:</span><br><br>"+ "<span>Features: </span>" + partOne + "<br><span> Adjective: </span> " + partTwo)
+
+         $(".confirm").on("click", function(){
+          check = this.value;
+          bluring('blur(0px)')
+          guessWho.answerOverlay.fadeOut()
+
+         })
+
+         if(check){ 
+          for(var i=0;i<guessWho.characters.length;i++){
+            for(var j=0;j<guessWho.characters[i][value].length;j++){
+              var choiceChecker = guessWho.characters[i][value].indexOf(choice)
+                if(choiceChecker>=0){
+                  var id = this.characters[i]["id"][0]
+                  console.log(id)
+                  guessWho.computerNames["namelist"][id] = null;
+                  console.log(guessWho.computerNames["namelist"])
+                  
+          }
+        }
+      }
+          }else{
+              for(var i=0;i<guessWho.characters.length;i++){
+                for(var j=0;j<guessWho.characters[i][value].length;j++){
+                  var choiceChecker = guessWho.characters[i][value].indexOf(choice)
+                    if(choiceChecker<0){
+                      var id = this.characters[i]["id"][0]
+                      console.log(id)
+                      guessWho.computerNames["namelist"][id] = null;
+                      console.log(guessWho.computerNames["namelist"])
+                      
+              }
+            }
+          }
+        }
+       guessWho.round++
+     }
+   }
+}
+
+["ears","small","normal", "big"],
+["chin","dimple", "pointy", "round"]
