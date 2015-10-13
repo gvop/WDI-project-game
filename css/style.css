@@ -287,18 +287,20 @@ input[type="radio"]:checked + label {
       font-size: 1.5rem;
      }
 
-     .character_list{
+     .character_list,
+     .character{
       width: 19%;
       padding: 16% 0;
      }
-     .character_list:hover{
+     .character_list:hover
+     .character{
       width: 19%;
       padding: 16% 0;
      }
 
      #overlay{
       position: absolute;
-      height: 1000px;
+      height: 800px;
      }
  }
 
