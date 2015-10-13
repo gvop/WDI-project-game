@@ -27,8 +27,7 @@ window.onload = function(){
     startButton           :   $("#start"),
     askButton             :   $("#ask"),
 
-    answerBoxPrint        :   function(text){  
-                                  $('html, body').animate({ scrollTop: 0 }, 'slow');  
+    answerBoxPrint        :   function(text){   
                                   this.answerOverlay.slideDown();  
                                   this.answerInput.text(" ");
                                   this.answerInput.append(text)},
@@ -53,11 +52,10 @@ window.onload = function(){
            }
 
     $("li").on("click", function(){
+      $(".character_list").fadeOut();
       guessWho.playerChoose   = this.id; 
       idPlayerCharacter       = this.getAttribute("number");
-
       guessWho.selectedCharacter = guessWho.characters[this.getAttribute("data")]
-      $(".character_list").fadeOut();
           setTimeout(function(){
                 $("#" + guessWho.playerChoose).show();
                 $("#start").fadeIn("slow");
@@ -79,25 +77,36 @@ window.onload = function(){
   //Winner check function
   guessWho.winnerChecker = function(){
     if(this.id ===guessWho.characters[idCharacter]["name"][0]){
-      guessWho.answerPicture.hide()
-      $(".confirm").hide()
-      $(".title").hide()
-      guessWho.answerBoxPrint("Yes, that's correct!");
+      $('.confirm_winnar').hide()
+      guessWho.winnerCheckerPrint("Yes, that's correct!");
+      setTimeout(function(){
+        location.reload();
+      }, 3000);
     }else{
-      guessWho.answerPicture.hide();
-      $(".confirm").hide();
-      $(".title").hide();
-      guessWho.answerBoxPrint("Nope, that's not the right one!<br> Keep going!");
+      $('.confirm_winnar').hide()
+      guessWho.winnerCheckerPrint("Nope, that's not the right one!<br> Keep going!");
+      setTimeout(function(){
+        guessWho.answerOverlay.slideUp()
+        guessWho.round++
+      }, 3000);
     }
   };
 
+  //Winner Check printer function
+  guessWho.winnerCheckerPrint = function(text){
+    guessWho.answerPicture.hide();
+    $(".confirm").hide();
+    $(".title").hide();
+    guessWho.answerBoxPrint(text);
+  }
 
   //Get the board show
   guessWho.printBoard = function(){
     this.idCharacter  = this.randomNumber(24)
     idCharacter       = this.idCharacter
-    console.log(this.characters[this.idCharacter]["name"]); 
-    //prints the board
+
+    console.log(this.idCharacter);
+
     for(var i=0;i<this.characters.length;i++){
        this.board.append(
         " <li style='background: url(pictures/"+ this.characters[i].name 
@@ -105,8 +114,6 @@ window.onload = function(){
         + this.characters[i].name + "'class='character' number='"+ this.characters[i].id + "'></li>")
     } $(".character").on("click", guessWho.winnerChecker); //Enable winner checker
   };
-
-
 
   //makes radio buttons clickable
   $("input:radio").on("click", function(){
@@ -143,18 +150,36 @@ window.onload = function(){
     return "<h3 class='computer-guess'>Feature: " + this.computerFeatures + "</h3><h3 class='computer-guess'>Adjective: " + this.computerAdjective + "</h3>";
   }
 
- //Computer turn
-  guessWho.computersTurn = function(){
-    if (guessWho.computerNames.length < 4){
-      var number = this.randomNumber(this.computerNames.length);
-      var name   = this.computerNames[number]
-      var text   = "I do a guess, is it: <br><h2>" + name + "?</h2>"
-      this.answerBoxPrint(text);
-      this.answerPicture.css("background-image","url("+guessWho.characters[idPlayerCharacter].picture[0]+")");
-      $(".confirm").hide()
-    } else {
-      guessWho.computerAskGenerator();
-    }
+
+//***** COMPUTERS TURN
+
+  //Computer turn
+   guessWho.computersTurn = function(){
+     if (guessWho.computerNames.length < 3 || guessWho.round > 5){
+       console.log(guessWho.round);
+       guessWho.computerGuess();
+     } else {
+       guessWho.computerAskGenerator();
+     }
+   }
+
+  //Computer Guess Function
+  guessWho.computerGuess = function(){
+    var name   = this.computerNames[this.randomNumber(this.computerNames.length)]
+    this.answerBoxPrint("I do a guess, is it: <br><h2>" + name + "?</h2>");
+    this.answerPicture.css("background-image","url("+guessWho.characters[idPlayerCharacter].picture[0]+")");
+    $(".confirm").hide()
+    $('.confirm_winnar').show();
+    $('.confirm_winnar').on("click", function(){
+      if(this.value === "true"){
+        setTimeout(function(){
+          location.reload();
+        }, 1000);
+      }else{
+        guessWho.filterResults(false)
+        guessWho.answerOverlay.slideUp()
+      }
+    });
   }
 
   guessWho.computerAskGenerator = function(){
@@ -182,17 +207,16 @@ window.onload = function(){
       }
     });
 
-    if (yes) {
+    if(yes){
       guessWho.computerNames = clone;
-    } else {
+    }else{
       guessWho.computerNames = guessWho.computerNames.filter(function(item) {
         return clone.indexOf(item) === -1;
       });
     }
-    
-console.log(guessWho.computerNames);
     return guessWho.computerNames;
   };
+
 
  //Select characters that are right/wrong 
   guessWho.dropDowns = function(value, choice){
@@ -215,10 +239,14 @@ console.log(guessWho.computerNames);
            }
           }
         } guessWho.round++
-        guessWho.computersTurn() 
+        $('html, body').animate({ scrollTop: 0 }, 'slow'); 
+        setTimeout(function(){
+          guessWho.computersTurn() 
+        }, 1500);
     }
   guessWho.printBoard()
 };
+
 
 
 
