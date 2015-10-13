@@ -27,12 +27,14 @@ window.onload = function(){
     startButton           :   $("#start"),
     askButton             :   $("#ask"),
 
-    answerBoxPrint        :   function(text){    
+    answerBoxPrint        :   function(text){  
+                                  $('html, body').animate({ scrollTop: 0 }, 'slow');  
                                   this.answerOverlay.slideDown();  
                                   this.answerInput.text(" ");
                                   this.answerInput.append(text)},
     randomNumber          :   function(value){return Math.floor(Math.random()*value)},
     askQuestion           :   function(){
+                              $('#instructions').slideUp();
                               this.features   =   $("input:radio[name='features']:checked").val();
                               this.adjective  =   $("input:radio[name='adjective']:checked").val();
                               guessWho.featuresCheck(this.features, this.adjective);
@@ -55,9 +57,9 @@ window.onload = function(){
       idPlayerCharacter       = this.getAttribute("number");
 
       guessWho.selectedCharacter = guessWho.characters[this.getAttribute("data")]
-      $(".character_list").fadeOut("slow");
+      $(".character_list").fadeOut();
           setTimeout(function(){
-                $("#" + guessWho.playerChoose).fadeIn("slow");
+                $("#" + guessWho.playerChoose).show();
                 $("#start").fadeIn("slow");
             }, 500);
       })
@@ -69,18 +71,23 @@ window.onload = function(){
 
   //After click on start button
   guessWho.startButton.on("click", function(){
-      guessWho.overlay.fadeOut(1000).remove();
-      $("body").hide().delay(200).fadeIn(2000);
+      guessWho.overlay.fadeOut(500).remove();
+      $("body").hide().delay(100).fadeIn(500);
   })
 
 
   //Winner check function
   guessWho.winnerChecker = function(){
     if(this.id ===guessWho.characters[idCharacter]["name"][0]){
-      guessWho.answerPicture.css("background-image", "url(" + guessWho.characters[idCharacter].picture[0] + ")");
-      guessWho.answerBoxPrint("Yes, that's correct!")
+      guessWho.answerPicture.hide()
+      $(".confirm").hide()
+      $(".title").hide()
+      guessWho.answerBoxPrint("Yes, that's correct!");
     }else{
-      guessWho.answerBoxPrint("Nope, that's not the right one!")
+      guessWho.answerPicture.hide();
+      $(".confirm").hide();
+      $(".title").hide();
+      guessWho.answerBoxPrint("Nope, that's not the right one!<br> Keep going!");
     }
   };
 
@@ -124,15 +131,8 @@ window.onload = function(){
     $('#' + id).css("color", "#ffce21").delay(1000).hide();
   }
 
-  // //Let pictures fade out
-  // guessWho.noShowPictures = function(value, choice){
-
-  // }
-
- //Computer question maker****************************************
+ //Computer question maker
   guessWho.questionMaker = function(){
-    console.log("It is round: " + guessWho.round)
-
     var questions = this.computerQuestions[guessWho.round];
     var question  = questions[this.randomNumber(questions.length)];
     var ajectiveGuess = question.adjectives[this.randomNumber(question.adjectives.length)];
@@ -140,37 +140,37 @@ window.onload = function(){
     this.computerFeatures   = question.feature
     this.computerAdjective  = ajectiveGuess 
 
-    return this.computerFeatures + " " + this.computerAdjective;
+    return "<h3 class='computer-guess'>Feature: " + this.computerFeatures + "</h3><h3 class='computer-guess'>Adjective: " + this.computerAdjective + "</h3>";
   }
 
  //Computer turn
   guessWho.computersTurn = function(){
-    if (guessWho.computerNames.length < 8){
+    if (guessWho.computerNames.length < 4){
       var number = this.randomNumber(this.computerNames.length);
       var name   = this.computerNames[number]
       var text   = "I do a guess, is it: <br><h2>" + name + "?</h2>"
       this.answerBoxPrint(text);
       this.answerPicture.css("background-image","url("+guessWho.characters[idPlayerCharacter].picture[0]+")");
       $(".confirm").hide()
-
     } else {
-
-      var text = guessWho.questionMaker();
-      this.answerBoxPrint(text);
-
-      this.answerPicture.css("background-image","url("+guessWho.characters[idPlayerCharacter].picture[0]+")");
-      
-      $('.confirm').on("click", function(){
-        if (this.value === "true"){
-          console.log(this.value)
-          guessWho.filterResults(true);
-          guessWho.answerOverlay.slideUp()
-        } else {
-          guessWho.filterResults(false)
-          guessWho.answerOverlay.slideUp()
-        }
-      });
+      guessWho.computerAskGenerator();
     }
+  }
+
+  guessWho.computerAskGenerator = function(){
+    var text = guessWho.questionMaker();
+    this.answerBoxPrint(text);
+    this.answerPicture.css("background-image","url("+guessWho.characters[idPlayerCharacter].picture[0]+")");
+    
+    $('.confirm').on("click", function(){
+      if (this.value === "true"){
+        guessWho.filterResults(true);
+        guessWho.answerOverlay.slideUp()
+      } else {
+        guessWho.filterResults(false)
+        guessWho.answerOverlay.slideUp()
+      }
+    });
   }
 
   guessWho.filterResults = function(yes){
@@ -197,6 +197,7 @@ console.log(guessWho.computerNames);
  //Select characters that are right/wrong 
   guessWho.dropDowns = function(value, choice){
     var checker = this.characters[idCharacter][value];
+
     if(checker.indexOf(choice) > -1){ 
         for(var i=0;i<guessWho.characters.length;i++){
           for(var j=0;j<guessWho.characters[i][value].length;j++){
@@ -213,7 +214,7 @@ console.log(guessWho.computerNames);
             }
            }
           }
-      } guessWho.round++
+        } guessWho.round++
         guessWho.computersTurn() 
     }
   guessWho.printBoard()

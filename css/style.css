@@ -4,6 +4,7 @@
 /** GENERAL **/
 body {
   background: #ffce21;
+  background: -webkit-radial-gradient(circle, #FFF5D3, #FFD84D);
   text-align: center;
 }
 
@@ -38,6 +39,10 @@ h1 {
   font-weight: 700;
 }
 
+.container h1 {
+  font-size: 2rem;
+}
+
 h1::first-letter{
   font-size: 130%;
 }
@@ -47,14 +52,13 @@ h2 {
 }
 
 .title {
-  padding: .5rem;
+/*  padding: .5rem;*/
   font-size: 3rem;
   font-weight: 600;
 }
 
 #answer-overlay h2{
   vertical-align: top;
-  margin-top: 2rem;
   display: inline-block;
   color: white;
   font-size: 2rem;
@@ -71,6 +75,11 @@ h2 {
 
 #answer-overlay h2 span{
   font-weight: 600;
+}
+
+.computer-guess {
+  margin: 5px 0;
+  font-size: 2rem;
 }
 
 h3,
@@ -97,6 +106,7 @@ img {
 #overlay{
   position: fixed;
   background: #ffce21;
+  background: -webkit-radial-gradient(circle, #FFF5D3, #FFD84D);
   text-align: center;
   color: white;
   top:0;
@@ -129,8 +139,8 @@ img {
 
 #question-box {
   vertical-align: top;
-  width: 34%;
-  margin: 2rem 0;
+  width: 70%;
+  margin: .5rem 0;
   display: inline-block;
 }
 
@@ -145,9 +155,13 @@ button {
   color: black;
   background:#ddd; 
   margin: 2rem 0.5rem;
-  padding: 7px 23px;
+  padding: 4px 13px;
   border-radius: 7px;
   transition: all .5s;
+}
+
+.confirm {
+  margin: .5rem;
 }
 
 button:active {
@@ -171,9 +185,9 @@ button:hover{
 
 #answer-pic {
   display: inline-block;
-  margin: 3rem 1rem 1rem;
-  width: 17%;
-  padding:8rem 0;
+  margin: 2rem 1rem 1rem;
+  width: 13%;
+  padding:6rem 0;
   background-size: 120%;
   background-position: center;
   background-repeat: no-repeat;
@@ -183,7 +197,7 @@ button:hover{
 #answer-content{
   display: inline-block;
   vertical-align: top;
-  width: 73%;
+  width: 55%;
 }
 
 #answer-overlay{
@@ -244,7 +258,7 @@ input[type="radio"]:checked + label {
   background-size: cover;
   color: white;
   width: 10%;
-  padding: 9% 0;
+  padding: 8% 0;
   margin: .5%;
   display: inline-block;
   text-align: center;
@@ -252,16 +266,17 @@ input[type="radio"]:checked + label {
   transition: all .5s;
 }
 
-.character:hover{
+.character:hover,
+.character_list:hover{
   width: 16%;
-  padding: 9% 4.5%;
+  padding: 8% 4.5%;
 
 }
 
-.character_list:hover{
+/*.character_list:hover{
   width: 10.2%;
   box-shadow:0 0 10px #000000;
-}
+}*/
 
 .character::first-letter,
 .character_list::first-letter,
@@ -274,7 +289,15 @@ input[type="radio"]:checked + label {
 }
 
 
+
+
 @media only screen and (max-width:800px){
+     #answer-pic{
+      display: block;
+      width: 50%;
+      margin: 0 auto;
+     }
+
      #question-box{
       width: 100%;
      }
