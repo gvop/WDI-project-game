@@ -33,7 +33,8 @@ h1,h2 {
 }
 
 h1 {
-  font-size: 3rem;
+  color: black;
+  font-size: 6rem;
   font-weight: 700;
 }
 
@@ -45,6 +46,11 @@ h2 {
   font-size: 2rem;
 }
 
+.title {
+  padding: .5rem;
+  font-size: 3rem;
+  font-weight: 600;
+}
 
 #answer-overlay h2{
   vertical-align: top;
@@ -271,6 +277,27 @@ input[type="radio"]:checked + label {
 @media only screen and (max-width:800px){
      #question-box{
       width: 100%;
+     }
+
+     h1{
+      font-size: 2rem;
+     }
+
+     h2 {
+      font-size: 1.5rem;
+     }
+
+     .character_list{
+      width: 17%;
+      padding: 14% 0;
+     }
+     .character_list:hover{
+      width: 17%;
+      padding: 14% 0;
+     }
+
+     #overlay{
+      height: 1000px;
      }
  }
 
