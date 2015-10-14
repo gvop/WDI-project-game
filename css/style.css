@@ -330,15 +330,15 @@ input[type="radio"]:checked + label {
       width: 19%;
       padding: 16% 0;
      }
-     .character_list:hover
-     .character{
+     .character_list:hover,
+     .character:hover{
       width: 19%;
       padding: 16% 0;
      }
 
      #overlay{
       position: absolute;
-      height: 800px;
+      height: 1500px;
      }
  }
 

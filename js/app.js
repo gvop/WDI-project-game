@@ -87,6 +87,7 @@ window.onload = function(){
       guessWho.winnerCheckerPrint("Nope, that's not the right one!<br> Keep going!");
       setTimeout(function(){
         guessWho.answerOverlay.slideUp()
+        guessWho.answerPicture.show();
         guessWho.round++
       }, 3000);
     }
@@ -105,7 +106,7 @@ window.onload = function(){
     this.idCharacter  = this.randomNumber(24)
     idCharacter       = this.idCharacter
 
-    console.log(this.idCharacter);
+    console.log(this.characters[this.idCharacter].name);
 
     for(var i=0;i<this.characters.length;i++){
        this.board.append(
@@ -156,8 +157,7 @@ window.onload = function(){
   //Computer turn
    guessWho.computersTurn = function(){
      if (guessWho.computerNames.length < 3 || guessWho.round > 5){
-       console.log(guessWho.round);
-       guessWho.computerGuess();
+       guessWho.computerGuess()
      } else {
        guessWho.computerAskGenerator();
      }

@@ -1,5 +1,6 @@
 list = {};                  //Object with characters in there
 
+//Prints the adjectives
 list.options =[{
   'gender'      :   ["gent", "lady"],
   'head'        :   ["square", "long", "oval", "round"],
@@ -8,50 +9,58 @@ list.options =[{
   'eyes'        :   ["brown","blue","bushy eyebrows", "neat eyebrows", "normal eyebrows"],
   'cheeks'      :   ["rosy"],
   'chin'        :   ["dimple", "pointy", "round"],
-  'mouth'       :   ["wide", "small", "small", "big lips"], 
+  'mouth'       :   ["wide", "small", "small lips", "big lips"], 
   'hair'        :   ["black","blonde","white","ginger","short", "long", "bald"],
   'expresion'   :   ["neutral","happy","grumpy","pout"],
   'facial hair' :   ["moustache", "beard"],
   'accessories' :   ["hat","earring","glasses","bows"]  
 }]
 
+//Generates Questions for the computer
 list.computerQuestions = {
   1 : [{
         feature: "gender",
         adjectives: ["gent", "lady"]
       }],
   2 : [{
-        feature: "nose",
-        adjectives: ["small", "medium", "large", "extra large"]
+        feature: "eyes",
+        adjectives: ["brown","blue"]
       },
       {
-        feature: "eyes",
-        adjectives: ["brown","blue","bushy", "neat eyebrows", "normal eyebrows"]
+        feature: "nose",
+        adjectives: ["large", "extra large"]
+      },
+      {
+        feature: "cheeks",
+        adjectives: ["rosy"]
       }],
   3 : [{
         feature: "hair",
-        adjectives: ["black","blonde","white","ginger","short", "long", "bold"]
+        adjectives: ["black","blonde","white","ginger"]
       },
       { 
         feature: "mouth",
-        adjectives: ["wide", "small", "small", "big lips"]
+        adjectives: ["wide", "small", "small lips", "big lips"]
       }],
   4 : [{
-        feature: "head",
-        adjectives: ["square", "long", "oval", "round"]
+        feature: 'accessories',
+        adjectives: ["hat","glasses"]
       },
       { 
         feature: 'expresion',
-        adjectives: ["neutral","happy","grumpy","pout"]
+        adjectives: ["grumpy","pout","happy"]
       }],
   5 : [{
         feature: 'accessories',
-        adjectives: ["hat","earring","glasses","bows"]
+        adjectives: ["earring","bows"]
       }]
 }
 
+//List for the computer to guess from
 list.charactersNames = ["alex", "alfred", "anita", "anne", "bernard", "bill", "charles", "claire", "david", "eric", "frans", "george", "herman", "joe", "maria", "max", "paul", "peter", "philip", "richard", "robert", "sam","susan", "tom"]
 
+
+//List for the computer to check the adjectives
 list.computerCharacters = {
   "alex": {
             'id'          :   [00],
@@ -463,6 +472,8 @@ list.computerCharacters = {
         }
   };
 
+
+//List for player to check the adjectives
 list.characters = [{
   'id'          :   [00],
   'name'        :   ["alex"],
