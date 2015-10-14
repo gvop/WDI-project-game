@@ -106,7 +106,7 @@ window.onload = function(){
     this.idCharacter  = this.randomNumber(24)
     idCharacter       = this.idCharacter
 
-    console.log(this.characters[this.idCharacter].name);
+    console.log(this.idCharacter);
 
     for(var i=0;i<this.characters.length;i++){
        this.board.append(
@@ -166,6 +166,17 @@ window.onload = function(){
   //Computer Guess Function
   guessWho.computerGuess = function(){
     var name   = this.computerNames[this.randomNumber(this.computerNames.length)]
+    if(typeof name === "undefined"){
+      var randomNumber = guessWho.randomNumber(3)
+      if(randomNumber === 0){
+        name = "Maria"
+      } else if(randomNumber === 1){
+        name = "Clair"
+      } else if(randomNumber === 2){
+        name = "Bill"
+      }
+
+    }
     this.answerBoxPrint("I do a guess, is it: <br><h2>" + name + "?</h2>");
     this.answerPicture.css("background-image","url("+guessWho.characters[idPlayerCharacter].picture[0]+")");
     $(".confirm").hide()

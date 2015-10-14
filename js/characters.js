@@ -10,7 +10,7 @@ list.options =[{
   'cheeks'      :   ["rosy"],
   'chin'        :   ["dimple", "pointy", "round"],
   'mouth'       :   ["wide", "small", "small lips", "big lips"], 
-  'hair'        :   ["black","blonde","white","ginger","short", "long", "bald"],
+  'hair'        :   ["black","blonde","brown","white","ginger","short", "long", "bald"],
   'expresion'   :   ["neutral","happy","grumpy","pout"],
   'facial hair' :   ["moustache", "beard"],
   'accessories' :   ["hat","earring","glasses","bows"]  
