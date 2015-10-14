@@ -51,6 +51,10 @@ list.computerQuestions = {
         adjectives: ["grumpy","pout","happy"]
       }],
   5 : [{
+        feature: 'facial hair',
+        adjectives: ["moustache", "beard"]
+      },
+      {
         feature: 'accessories',
         adjectives: ["earring","bows"]
       }]
